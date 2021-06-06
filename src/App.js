@@ -1,6 +1,17 @@
+import { HashRouter, Route } from "react-router-dom";
+import Navigation from "./routes/Navigation";
+import Home from "./routes/Home";
+import Calculation from "./routes/Calculation";
+import Inquiry from "./routes/Inquiry";
+
 function App() {
   return (
-    <div className="App">Hello World!</div>
+    <HashRouter>
+      <Navigation />
+      <Route exact path="/" component={Home} />
+      <Route path="/calculation" component={Calculation} />
+      <Route path="/inquiry" component={Inquiry} />
+    </HashRouter>
   );
 }
 
