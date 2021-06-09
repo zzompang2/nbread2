@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import "./Calculation.css";
+import MultiCheckbox from "./MultiCheckbox";
 
 let [personIdMax, paymentIdMax] = [1, 1];
 
@@ -9,6 +10,7 @@ function Calculation(props) {
 		{id: 0, memo: "결제1", payer: 0, money: 1000, people: [0,1]},
 		{id: 1, memo: "결제2", payer: 1, money: 3000, people: [0,1]}
 	]);
+	const [selectedId, setSelectedId] = useState(-1);		// MultiCheckbox 가 눌려있는 payment
 
 	function changeName(newName, id) {
 		console.log("changeName");
@@ -37,7 +39,7 @@ function Calculation(props) {
 	function addPayment() {
 		console.log("addPayment", paymentIdMax);
 		paymentIdMax++;
-		setPayment([...payment, {id: paymentIdMax, memo: "결제"+(paymentIdMax+1), payer: 0, money: 0, people: [0]}]);
+		setPayment([...payment, {id: paymentIdMax, memo: "결제"+(paymentIdMax+1), payer: 0, money: 0, people: people.map(person => person.id)}]);
 	}
 
 	function deletePerson(id) {
@@ -80,6 +82,31 @@ function Calculation(props) {
 		setPayment(newPayment);
 	}
 
+	function selectPerson(id, person) {
+		const newPayment = payment.map(pay => pay.id === id ? {...pay, people: [...pay.people, person]} : pay);
+		setPayment(newPayment);
+	}
+
+	function unselectPerson(id, person) {
+		const newPayment = payment.map(pay => pay.id === id ? {...pay, people: pay.people.filter(id => id !== person)} : pay);
+		setPayment(newPayment);
+	}
+
+	function popupMultiCheckbox(id) {
+		console.log("popupMultiCheckbox", id);
+		setSelectedId(selectedId === id ? -1 : id);
+	}
+
+	function selectPersonAll(id) {
+		const newPayment = payment.map(pay => pay.id === id ? {...pay, people: people.map(person => person.id)} : pay);
+		setPayment(newPayment);
+	}
+
+	function unselectPersonAll(id) {
+		const newPayment = payment.map(pay => pay.id === id ? {...pay, people: []} : pay);
+		setPayment(newPayment);
+	}
+
 	return (
 	  <div className="container">
 			<div className="name">
@@ -113,7 +140,7 @@ function Calculation(props) {
 						<div className="table__id__people">사용한 사람들</div>
 					</div>
 					{payment.map(pay =>
-					<div key={pay.id}>
+					<div key={pay.id} className="table__element">
 						{/* 메모 */}
 						<input
 						className="table__id__memo"
@@ -141,9 +168,24 @@ function Calculation(props) {
 						value={pay.money}
 						placeholder="0"
 						onChange={e => changeMoney(e.target.value, pay.id)}/>
-						<button className="table__id__people">
-							{pay.people.map(id => findName(id))}
-						</button>
+						{/* 사용한 사람들 */}
+						<div className="table__id__people">
+							<button  onClick={() => popupMultiCheckbox(pay.id)}>
+								{pay.people.map(id => findName(id))}
+							</button>
+							{selectedId === pay.id ?
+							<MultiCheckbox
+							id={pay.id}
+							people={people}
+							selected={pay.people}
+							selectPerson={selectPerson}
+							unselectPerson={unselectPerson}
+							selectPersonAll={selectPersonAll}
+							unselectPersonAll={unselectPersonAll}
+							popupMultiCheckbox={popupMultiCheckbox} />
+							:
+							<Fragment />}
+						</div>
 						<button onClick={() => deletePayment(pay.id)}>X</button>
 					</div>
 					)}
