@@ -1,31 +1,43 @@
 import React, { useState } from 'react';
 import "./Calculation.css";
 
-function Calculation(props) {
+let [personIdMax, paymentIdMax] = [1, 1];
 
+function Calculation(props) {
 	const [people, setPeople] = useState([{id: 0, name: "철수"}, {id: 1, name: "영희"}]);
-	const payment = [
+	const [payment, setPayment] = useState([
 		{id: 0, memo: "결제1", paid: 0, money: 1000, people: [0,1]},
 		{id: 1, memo: "결제2", paid: 1, money: 3000, people: [1]}
-	];
+	]);
 
-	function handleChangeName(newName, id) {
-		console.log("handleChangeName");
+	function changeName(newName, id) {
+		console.log("changeName");
 		const newPeople = people.map(person => person.id === id ? {...person, name: newName} : person);
 		setPeople(newPeople);
 	}
 
-	function handleChangeMemo() {
-		console.log("handleChangeMemo");
+	function changeMemo(newMemo, id) {
+		console.log("changeMemo");
+		const newPayment = payment.map(pay => pay.id === id ? {...pay, memo: newMemo} : pay);
+		setPayment(newPayment);
 	}
 
-	function handleChangeMoney() {
-		console.log("handleChangeMoney");
+	function changeMoney(newMoney, id) {
+		console.log("changeMoney");
+		const newPayment = payment.map(pay => pay.id === id ? {...pay, money: newMoney} : pay);
+		setPayment(newPayment);
 	}
 
 	function addName() {
-		console.log("addName");
-		setPeople([...people, {id: people[people.length-1].id+1, name: "이름"}]);
+		console.log("addName", personIdMax);
+		personIdMax = personIdMax+1;
+		setPeople([...people, {id: personIdMax, name: "이름"+(personIdMax+1)}]);
+	}
+
+	function addPayment() {
+		console.log("addPayment", paymentIdMax);
+		paymentIdMax++;
+		setPayment ([...payment, {id: paymentIdMax, memo: "결제"+(paymentIdMax+1), paid: 0, money: 0, people: [0]}]);
 	}
 
 	return (
@@ -42,7 +54,7 @@ function Calculation(props) {
 						<input
 							value={person.name}
 							placeholder="이름"
-							onChange={(e) => handleChangeName(e.target.value, person.id)}/>
+							onChange={(e) => changeName(e.target.value, person.id)}/>
 						<button>X</button>
 					</div>
 					)}
@@ -51,7 +63,7 @@ function Calculation(props) {
 			<div className="money">
 				<div className="title">
 					결제내역 및 정산 대상 입력
-					<button>추가하기</button>
+					<button onClick={addPayment}>추가하기</button>
 				</div>
 				<div>
 					<div className="table__id">
@@ -66,13 +78,14 @@ function Calculation(props) {
 						className="table__id__memo"
 						value={pay.memo}
 						placeholder="결제"
-						onChange={handleChangeMemo}/>
+						onChange={e => changeMemo(e.target.value, pay.id)}/>
 						<button className="table__id__paid">{people[pay.paid].name}</button>
 						<input
 						className="table__id__money"
+						type="number"
 						value={pay.money}
 						placeholder="0"
-						onChange={handleChangeMoney}/>
+						onChange={e => changeMoney(e.target.value, pay.id)}/>
 						<button className="table__id__people">
 							{pay.people.map(id => people[id].name)}
 						</button>
