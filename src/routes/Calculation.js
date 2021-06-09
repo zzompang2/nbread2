@@ -40,6 +40,39 @@ function Calculation(props) {
 		setPayment ([...payment, {id: paymentIdMax, memo: "결제"+(paymentIdMax+1), paid: 0, money: 0, people: [0]}]);
 	}
 
+	function deletePerson(id) {
+		console.log("deletePerson");
+		const newPayment = [];
+
+		for(let i=0; i<payment.length; i++) {
+			// 결제한 내역이 있는 경우, 삭제 불가
+			if(payment[i].paid === id) {
+				console.log("삭제 실패: 결제한 내역이 있는 사람입니다.");
+				return;
+			}
+			// 사용한 사람들에 포함되어 있는 경우, 시용한 사람 리스트에서 제외
+			newPayment.push({...payment[i], people: payment[i].people.filter(pid => id !== pid)});
+		}
+
+		const newPeople = people.filter(person => person.id !== id);
+		setPeople(newPeople);
+		setPayment(newPayment);
+	}
+
+	function deletePayment(id) {
+		console.log("deletePayment");
+		const newPayment = payment.filter(pay => pay.id !== id);
+		setPayment(newPayment);
+	}
+
+	function findName(id) {
+		for(let i=0; i<people.length; i++) {
+			if(people[i].id === id)
+			return people[i].name;
+		}
+		return "X";
+	}
+
 	return (
 	  <div className="container">
 			<div className="name">
@@ -55,7 +88,7 @@ function Calculation(props) {
 							value={person.name}
 							placeholder="이름"
 							onChange={(e) => changeName(e.target.value, person.id)}/>
-						<button>X</button>
+						<button onClick={() => deletePerson(person.id)}>X</button>
 					</div>
 					)}
 				</div>
@@ -79,7 +112,7 @@ function Calculation(props) {
 						value={pay.memo}
 						placeholder="결제"
 						onChange={e => changeMemo(e.target.value, pay.id)}/>
-						<button className="table__id__paid">{people[pay.paid].name}</button>
+						<button className="table__id__paid">{findName(pay.paid)}</button>
 						<input
 						className="table__id__money"
 						type="number"
@@ -87,9 +120,9 @@ function Calculation(props) {
 						placeholder="0"
 						onChange={e => changeMoney(e.target.value, pay.id)}/>
 						<button className="table__id__people">
-							{pay.people.map(id => people[id].name)}
+							{pay.people.map(id => findName(id))}
 						</button>
-						<button>X</button>
+						<button onClick={() => deletePayment(pay.id)}>X</button>
 					</div>
 					)}
 				</div>
