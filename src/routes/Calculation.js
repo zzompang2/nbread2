@@ -6,8 +6,8 @@ let [personIdMax, paymentIdMax] = [1, 1];
 function Calculation(props) {
 	const [people, setPeople] = useState([{id: 0, name: "철수"}, {id: 1, name: "영희"}]);
 	const [payment, setPayment] = useState([
-		{id: 0, memo: "결제1", paid: 0, money: 1000, people: [0,1]},
-		{id: 1, memo: "결제2", paid: 1, money: 3000, people: [1]}
+		{id: 0, memo: "결제1", payer: 0, money: 1000, people: [0,1]},
+		{id: 1, memo: "결제2", payer: 1, money: 3000, people: [0,1]}
 	]);
 
 	function changeName(newName, id) {
@@ -37,16 +37,16 @@ function Calculation(props) {
 	function addPayment() {
 		console.log("addPayment", paymentIdMax);
 		paymentIdMax++;
-		setPayment ([...payment, {id: paymentIdMax, memo: "결제"+(paymentIdMax+1), paid: 0, money: 0, people: [0]}]);
+		setPayment([...payment, {id: paymentIdMax, memo: "결제"+(paymentIdMax+1), payer: 0, money: 0, people: [0]}]);
 	}
 
 	function deletePerson(id) {
-		console.log("deletePerson");
+		console.log("deletePerson", id);
 		const newPayment = [];
 
 		for(let i=0; i<payment.length; i++) {
 			// 결제한 내역이 있는 경우, 삭제 불가
-			if(payment[i].paid === id) {
+			if(payment[i].payer === id) {
 				console.log("삭제 실패: 결제한 내역이 있는 사람입니다.");
 				return;
 			}
@@ -71,6 +71,13 @@ function Calculation(props) {
 			return people[i].name;
 		}
 		return "X";
+	}
+
+	function changePayer(e) {
+		const { id: payId, value: newPayer } = e.target;
+		console.log("changePayer", payId, newPayer);
+		const newPayment = payment.map(pay => pay.id === Number(payId) ? {...pay, payer: Number(newPayer)} : pay);
+		setPayment(newPayment);
 	}
 
 	return (
@@ -101,18 +108,33 @@ function Calculation(props) {
 				<div>
 					<div className="table__id">
 						<div className="table__id__memo">메모</div>
-						<div className="table__id__paid">결제한 사람</div>
+						<div className="table__id__payer">결제한 사람</div>
 						<div className="table__id__money">결제한 금액</div>
 						<div className="table__id__people">사용한 사람들</div>
 					</div>
 					{payment.map(pay =>
 					<div key={pay.id}>
+						{/* 메모 */}
 						<input
 						className="table__id__memo"
 						value={pay.memo}
 						placeholder="결제"
 						onChange={e => changeMemo(e.target.value, pay.id)}/>
-						<button className="table__id__paid">{findName(pay.paid)}</button>
+						{/* 결제한 사람 */}
+						<select
+						className="table__id__payer"
+						id={pay.id}
+						value={pay.payer}
+						onChange={changePayer}>
+							{people.map(person => (
+								<option
+								key={person.id}
+								value={person.id}>
+									{person.name}
+								</option>
+							))}
+						</select>
+						{/* 결제한 금액 */}
 						<input
 						className="table__id__money"
 						type="number"
