@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Calculation.css";
 
 function Calculation(props) {
-  console.log(props);
-	const people = [{id: 0, name: "철수"}, {id: 1, name: "영희"}];
+
+	const [people, setPeople] = useState([{id: 0, name: "철수"}, {id: 1, name: "영희"}]);
 	const payment = [
 		{id: 0, memo: "결제1", paid: 0, money: 1000, people: [0,1]},
 		{id: 1, memo: "결제2", paid: 1, money: 3000, people: [1]}
 	];
 
-	function handleChangeName() {
+	function handleChangeName(newName, id) {
 		console.log("handleChangeName");
+		const newPeople = people.map(person => person.id === id ? {...person, name: newName} : person);
+		setPeople(newPeople);
 	}
 
 	function handleChangeMemo() {
@@ -21,12 +23,17 @@ function Calculation(props) {
 		console.log("handleChangeMoney");
 	}
 
+	function addName() {
+		console.log("addName");
+		setPeople([...people, {id: people[people.length-1].id+1, name: "이름"}]);
+	}
+
 	return (
 	  <div className="container">
 			<div className="name">
 				<div className="title">
 					이름 입력
-					<button>추가하기</button>
+					<button onClick={addName}>추가하기</button>
 				</div>
 				<div>
 					이름
@@ -35,7 +42,7 @@ function Calculation(props) {
 						<input
 							value={person.name}
 							placeholder="이름"
-							onChange={handleChangeName}/>
+							onChange={(e) => handleChangeName(e.target.value, person.id)}/>
 						<button>X</button>
 					</div>
 					)}
