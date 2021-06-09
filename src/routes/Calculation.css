@@ -24,6 +24,7 @@
   background-color: white;
   width: 29%;
   /* height: 10rem; */
+  flex-direction: column;
 }
 
 .title {
@@ -71,4 +72,22 @@
   display: flex;
   flex-direction: row;
   background-color: yellow;
+}
+
+.result__element {
+  display: flex;
+  flex-direction: row;
+  background-color: violet;
+}
+
+.result__element__name {
+  width: 30%;
+}
+
+.result__element__paidMoney {
+  width: 35%;
+}
+
+.result__element__usedMoney {
+  width: 35%;
 }
