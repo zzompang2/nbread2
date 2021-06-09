@@ -1,0 +1,67 @@
+.container {
+  background-color: burlywood;
+  display: flex;
+  flex-direction: row;
+  padding: 1%;
+}
+
+.name {
+  background-color: white;
+  width: 17%;
+  height: 10rem;
+  margin-right: 1%;
+}
+
+.money {
+  background-color: white;
+  width: 48%;
+  height: 10rem;
+  flex: 1;
+  margin-right: 1%;
+}
+
+.result {
+  background-color: white;
+  width: 29%;
+  height: 10rem;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+  background-color: whitesmoke;
+  align-items: center;
+  justify-content: space-between;
+
+  color: black;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.title button {
+  color: green;
+  background-color: unset;
+  border: unset;
+}
+
+.table__id {
+  display: flex;
+  flex-direction: row;
+  background-color: yellowgreen;
+}
+
+.table__id__memo {
+  width: 20%;
+}
+
+.table__id__paid {
+  width: 20%;
+}
+
+.table__id__money {
+  width: 20%;
+}
+
+.table__id__people {
+  width: 20%;
+}

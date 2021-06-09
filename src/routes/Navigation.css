@@ -1,0 +1,30 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  background-color: #ff0000;
+  padding: 32px;
+	align-items: center;
+}
+
+.logo {
+  width: 17%;
+  background-color: aqua;
+}
+
+.logo a {
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+ 
+.menus {
+  flex: 1;
+  background-color: blue;
+  flex-direction: row;
+}
+.menus a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+}
