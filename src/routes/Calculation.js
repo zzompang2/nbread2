@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import "./Calculation.css";
 import MultiCheckbox from "./MultiCheckbox";
+import Result from "./Result";
 
 let [personIdMax, paymentIdMax] = [1, 1];
 let [paidAll, usedAll] = [0, 0];
@@ -11,7 +12,8 @@ function Calculation(props) {
 		{id: 0, memo: "결제1", payer: 0, money: 0, people: [0,1]},
 		{id: 1, memo: "결제2", payer: 1, money: 0, people: [0,1]}
 	]);
-	const [selectedId, setSelectedId] = useState(-1);		// MultiCheckbox 가 눌려있는 payment
+	const [selectedId, setSelectedId] = useState(-1);					// MultiCheckbox 가 눌려있는 payment
+	const [resultToggle, setResultToggle] = useState(false);	// Result 창 토글
 
 	function changeName(newName, id) {
 		console.log("changeName");
@@ -138,126 +140,135 @@ function Calculation(props) {
 	}
 
 	return (
-	  <div className="container">
-			<div className="name">
-				<div className="title">
-					이름 입력
-					<button onClick={addName}>추가하기</button>
-				</div>
-				<div>
-					이름
-					{people.map(person =>
-					<div key={person.id}>
-						<input
-							value={person.name}
-							placeholder="이름"
-							onChange={(e) => changeName(e.target.value, person.id)}/>
-						<button onClick={() => deletePerson(person.id)}>X</button>
-					</div>
-					)}
-				</div>
-			</div>
-
-			<div className="money">
-				<div className="title">
-					결제내역 및 정산 대상 입력
-					<button onClick={addPayment}>추가하기</button>
-				</div>
-				<div className="table__id">
-					<div className="table__id__memo">메모</div>
-					<div className="table__id__payer">결제한 사람</div>
-					<div className="table__id__money">결제한 금액</div>
-					<div className="table__id__people">사용한 사람들</div>
-				</div>
-				{payment.map(pay =>
-				<div key={pay.id} className="table__element">
-					{/* 메모 */}
-					<input
-					className="table__id__memo"
-					value={pay.memo}
-					placeholder="결제"
-					onChange={e => changeMemo(e.target.value, pay.id)}/>
-					{/* 결제한 사람 */}
-					<select
-					className="table__id__payer"
-					id={pay.id}
-					value={pay.payer}
-					onChange={changePayer}>
-						{people.map(person => (
-							<option
-							key={person.id}
-							value={person.id}>
-								{person.name}
-							</option>
-						))}
-					</select>
-					{/* 결제한 금액 */}
-					<input
-					className="table__id__money"
-					type="number"
-					value={pay.money}
-					placeholder="0"
-					onChange={e => changeMoney(e.target.value, pay.id)}/>
-					{/* 사용한 사람들 */}
-					<div className="table__id__people">
-						<button  onClick={() => popupMultiCheckbox(pay.id)}>
-							{pay.people.map(id => findName(id))}
-						</button>
-						{selectedId === pay.id ?
-						<MultiCheckbox
-						id={pay.id}
-						people={people}
-						selected={pay.people}
-						selectPerson={selectPerson}
-						unselectPerson={unselectPerson}
-						selectPersonAll={selectPersonAll}
-						unselectPersonAll={unselectPersonAll}
-						popupMultiCheckbox={popupMultiCheckbox} />
-						:
-						<Fragment />}
-					</div>
-					<button onClick={() => deletePayment(pay.id)}>X</button>
-				</div>
-				)}
-			</div>
-
-			<div className="column3">
-				<div className="result">
+		<div className="container">
+			<div className="calculation__container">
+				<div className="name">
 					<div className="title">
-						중간 계산 결과
+						이름 입력
+						<button onClick={addName}>추가하기</button>
+					</div>
+					<div>
+						이름
+						{people.map(person =>
+						<div key={person.id}>
+							<input
+								value={person.name}
+								placeholder="이름"
+								onChange={(e) => changeName(e.target.value, person.id)}/>
+							<button onClick={() => deletePerson(person.id)}>X</button>
+						</div>
+						)}
+					</div>
+				</div>
+
+				<div className="money">
+					<div className="title">
+						결제내역 및 정산 대상 입력
+						<button onClick={addPayment}>추가하기</button>
 					</div>
 					<div className="table__id">
-						<div className="result__element__name">이름</div>
-						<div className="result__element__paidMoney">총 결제 금액</div>
-						<div className="result__element__usedMoney">총 사용 금액</div>
+						<div className="table__id__memo">메모</div>
+						<div className="table__id__payer">결제한 사람</div>
+						<div className="table__id__money">결제한 금액</div>
+						<div className="table__id__people">사용한 사람들</div>
 					</div>
-					{updateResult().map(person => 
-						<div key={person.id} className="result__element">
-							<div className="result__element__name">
-								{person.name}
-							</div>
-							<div className="result__element__paidMoney">
-								{person.paid}
-							</div>
-							<div className="result__element__usedMoney">
-								{person.used}
-							</div>
+					{payment.map(pay =>
+					<div key={pay.id} className="table__element">
+						{/* 메모 */}
+						<input
+						className="table__id__memo"
+						value={pay.memo}
+						placeholder="결제"
+						onChange={e => changeMemo(e.target.value, pay.id)}/>
+						{/* 결제한 사람 */}
+						<select
+						className="table__id__payer"
+						id={pay.id}
+						value={pay.payer}
+						onChange={changePayer}>
+							{people.map(person => (
+								<option
+								key={person.id}
+								value={person.id}>
+									{person.name}
+								</option>
+							))}
+						</select>
+						{/* 결제한 금액 */}
+						<input
+						className="table__id__money"
+						type="number"
+						value={pay.money}
+						placeholder="0"
+						onChange={e => changeMoney(e.target.value, pay.id)}/>
+						{/* 사용한 사람들 */}
+						<div className="table__id__people">
+							<button  onClick={() => popupMultiCheckbox(pay.id)}>
+								{pay.people.map(id => findName(id))}
+							</button>
+							{selectedId === pay.id ?
+							<MultiCheckbox
+							id={pay.id}
+							people={people}
+							selected={pay.people}
+							selectPerson={selectPerson}
+							unselectPerson={unselectPerson}
+							selectPersonAll={selectPersonAll}
+							unselectPersonAll={unselectPersonAll}
+							popupMultiCheckbox={popupMultiCheckbox} />
+							:
+							<Fragment />}
 						</div>
+						<button onClick={() => deletePayment(pay.id)}>X</button>
+					</div>
 					)}
-					<div className="result__element">
-							<div className="result__element__name">
-								총 합
-							</div>
-							<div className="result__element__paidMoney">
-								{paidAll}
-							</div>
-							<div className="result__element__usedMoney">
-								{usedAll}
-							</div>
-						</div>
 				</div>
-				<button className="calculateBtn">N빵 하기</button>
+
+				<div className="column3">
+					<div className="result">
+						<div className="title">
+							중간 계산 결과
+						</div>
+						<div className="table__id">
+							<div className="result__element__name">이름</div>
+							<div className="result__element__paidMoney">총 결제 금액</div>
+							<div className="result__element__usedMoney">총 사용 금액</div>
+						</div>
+						{updateResult().map(person => 
+							<div key={person.id} className="result__element">
+								<div className="result__element__name">
+									{person.name}
+								</div>
+								<div className="result__element__paidMoney">
+									{person.paid}
+								</div>
+								<div className="result__element__usedMoney">
+									{person.used}
+								</div>
+							</div>
+						)}
+						<div className="result__element">
+								<div className="result__element__name">
+									총 합
+								</div>
+								<div className="result__element__paidMoney">
+									{paidAll}
+								</div>
+								<div className="result__element__usedMoney">
+									{usedAll}
+								</div>
+							</div>
+					</div>
+					<button className="calculateBtn" onClick={() => setResultToggle(true)}>N빵 하기</button>
+				</div>
 			</div>
+			{ resultToggle ?
+			<Result
+			setResultToggle={setResultToggle}
+			people={people}
+			payment={payment} />
+			:
+			<Fragment /> }
 		</div>
 	);
 }
