@@ -297,8 +297,15 @@ function Calculation(props) {
 						onChange={e => changeMoney(e.target.value, payment.id)}/>
 						{/* 사용한 사람들 */}
 						<div className="table__id__users">
-							<button  onClick={() => popupUsersSelect(payment.id)}>
-								{payment.users.map(id => findName(id))}
+							<button onClick={() => popupUsersSelect(payment.id)}>
+								{payment.users.length === members.length ?
+								"전체"
+								:
+								payment.users.length === 0 ?
+								"사용한 사람들을 선택해 주세요"
+								:
+								payment.users.map(id => findName(id))
+								}
 							</button>
 							{selectedPid === payment.id ?
 							<UsersSelect
