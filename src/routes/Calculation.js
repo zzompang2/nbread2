@@ -5,8 +5,8 @@ import Result from "./Result";
 
 let [paidMoneyAll, usedMoneyAll] = [0, 0];
 let middleResult = [
-	{id: 0, name: "철수", paidMoney: 0, usedMoney: 0},
-	{id: 1, name: "영희", paidMoney: 0, usedMoney: 0}
+	{id: 0, name: "철수", paidMoney: 0, usedMoney: 0, bonus: 0},
+	{id: 1, name: "영희", paidMoney: 0, usedMoney: 0, bonus: 0}
 ];
 
 function Calculation(props) {
@@ -205,18 +205,25 @@ function Calculation(props) {
 
 	/**
 	 * 멤버별 총 결제 금액 및 총 사용 금액을 계산한다.
-	 * @returns Array of {id, name, paidMoney, usedMoney}
+	 * @returns Array of {id, name, paidMoney, usedMoney, bonus}
 	 */
 	function updateMiddleResult() {
 		console.log("updateMiddleResult");
-		console.log(members);
-		console.log(payments);
-		middleResult = members.map(member => {return {...member, paidMoney: 0, usedMoney: 0}});
+		middleResult = members.map(member => {return {...member, paidMoney: 0, usedMoney: 0, bonus: 0}});
 		payments.forEach(payment => {
-			middleResult[payment.payer].paidMoney += Number(payment.money);
-
+			let money = Number(payment.money);
+			middleResult[payment.payer].paidMoney += money;
+			
+			/* 나누어 떨어지지 않으면 올림해서 보내기로 한다 */
+			const num = payment.users.length;
+			const rest = money % num;
+			if(rest !== 0) {
+				const bonus = num - rest;	// 결제자가 받을 추가 금액
+				money += bonus;						// 나누어 떨어지도록 더함
+				middleResult[payment.payer].bonus = bonus;	
+			}
 			payment.users.forEach(mid => {
-				middleResult[mid].usedMoney += Number(payment.money) / payment.users.length;
+				middleResult[mid].usedMoney += money / num;
 			});
 		});
 
@@ -226,7 +233,6 @@ function Calculation(props) {
 			paidMoneyAll += res.paidMoney;
 			usedMoneyAll += res.usedMoney;
 		});
-		return middleResult;
 	}
 
 	// 뭐가 수정되든 항상 업데이트
@@ -334,6 +340,7 @@ function Calculation(props) {
 							<div className="result__element__name">이름</div>
 							<div className="result__element__paidMoney">총 결제 금액</div>
 							<div className="result__element__usedMoney">총 사용 금액</div>
+							<div className="result__element__usedMoney">보너스</div>
 						</div>
 						{middleResult.map(res => 
 							<div key={res.id} className="result__element">
@@ -345,6 +352,9 @@ function Calculation(props) {
 								</div>
 								<div className="result__element__usedMoney">
 									{res.usedMoney}
+								</div>
+								<div className="result__element__usedMoney">
+									{res.bonus}
 								</div>
 							</div>
 						)}
@@ -367,7 +377,8 @@ function Calculation(props) {
 			<Result
 			setResultToggle={setResultToggle}
 			members={members}
-			payments={payments} />
+			payments={payments}
+			middleResult={middleResult} />
 			:
 			<Fragment />}
 		</div>

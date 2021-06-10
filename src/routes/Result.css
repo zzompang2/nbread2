@@ -9,7 +9,7 @@
 }
 
 .result__bg {
-  width: 50rem;
+  width: 40rem;
   /* height: 50rem; */
   background-color: white;
   /* margin-top: 92px; */
@@ -18,4 +18,40 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+}
+
+.table__row {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+}
+
+.table__id2,
+.table__name,
+.table__id2AndName,
+.table__pay,
+.table__checkbox,
+.table__delButton {
+	font-size: .8em;
+	padding: .2rem;
+	margin: 0;
+	border: .1rem solid rgba(0, 0, 0, 0);
+	height: 1rem;
+}
+
+.table__id2 {
+	width: 2rem;
+	text-align: center;
+}
+
+.table__name {
+	width: 6rem;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.table__pay {
+	width: 5rem;
+	justify-content: center;
+	display: flex;
+	flex-direction: row;
 }
