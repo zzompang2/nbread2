@@ -221,39 +221,42 @@ function Calculation(props) {
 				)}
 			</div>
 
-			<div className="result">
-				<div className="title">
-					중간 계산 결과
-				</div>
-				<div className="table__id">
-					<div className="result__element__name">이름</div>
-					<div className="result__element__paidMoney">총 결제 금액</div>
-					<div className="result__element__usedMoney">총 사용 금액</div>
-				</div>
-				{updateResult().map(person => 
-					<div key={person.id} className="result__element">
-						<div className="result__element__name">
-							{person.name}
-						</div>
-						<div className="result__element__paidMoney">
-							{person.paid}
-						</div>
-						<div className="result__element__usedMoney">
-							{person.used}
-						</div>
+			<div className="column3">
+				<div className="result">
+					<div className="title">
+						중간 계산 결과
 					</div>
-				)}
-				<div className="result__element">
-						<div className="result__element__name">
-							총 합
-						</div>
-						<div className="result__element__paidMoney">
-							{paidAll}
-						</div>
-						<div className="result__element__usedMoney">
-							{usedAll}
-						</div>
+					<div className="table__id">
+						<div className="result__element__name">이름</div>
+						<div className="result__element__paidMoney">총 결제 금액</div>
+						<div className="result__element__usedMoney">총 사용 금액</div>
 					</div>
+					{updateResult().map(person => 
+						<div key={person.id} className="result__element">
+							<div className="result__element__name">
+								{person.name}
+							</div>
+							<div className="result__element__paidMoney">
+								{person.paid}
+							</div>
+							<div className="result__element__usedMoney">
+								{person.used}
+							</div>
+						</div>
+					)}
+					<div className="result__element">
+							<div className="result__element__name">
+								총 합
+							</div>
+							<div className="result__element__paidMoney">
+								{paidAll}
+							</div>
+							<div className="result__element__usedMoney">
+								{usedAll}
+							</div>
+						</div>
+				</div>
+				<button className="calculateBtn">N빵 하기</button>
 			</div>
 		</div>
 	);
