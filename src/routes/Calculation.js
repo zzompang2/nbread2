@@ -239,8 +239,8 @@ function Calculation(props) {
 	updateMiddleResult();
 
 	return (
-		<div className="container">
-			<div className="calculation__container">
+		<div className="calculation">
+			<div className="container">
 				<div className="name">
 					<div className="title">
 						이름 입력
@@ -331,7 +331,7 @@ function Calculation(props) {
 					)}
 				</div>
 
-				<div className="column3">
+				{/* <div className="column3">
 					<div className="result">
 						<div className="title">
 							중간 계산 결과
@@ -371,7 +371,7 @@ function Calculation(props) {
 							</div>
 					</div>
 					<button className="calculateBtn" onClick={() => setResultToggle(true)}>N빵 하기</button>
-				</div>
+				</div> */}
 			</div>
 			{resultToggle ?
 			<Result

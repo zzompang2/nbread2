@@ -1,34 +1,38 @@
 .nav {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: fixed;
-  width: 100%;
-  height: 60px;
-  padding-left: 16px;
-  background-color: #ff0000;
-	align-items: center;
+  width: 60px;
+  height: 100%;
+  padding: 8px;
+  gap: 10px;
+  background-color: var(--container-50);
+  align-items: center;
   z-index: 10;
 }
 
-.logo {
-  width: 17%;
+.nav .logo {
+  width: 48px;
+  height: 48px;
   background-color: aqua;
 }
 
-.logo a {
+/* .nav .logo a {
   font-size: 16px;
   font-weight: 700;
   text-decoration: none;
-}
- 
-.menus {
-  flex: 1;
+} */
+
+.nav .menus {
+  display: flex;
   background-color: blue;
-  flex-direction: row;
+  flex-direction: column;
 }
+
 .menus a {
-  text-decoration: none;
-  color: white;
-  font-size: 16px;
-  padding: 10px;
+  background-color: white;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
 }

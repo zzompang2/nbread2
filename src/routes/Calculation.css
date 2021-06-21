@@ -1,24 +1,36 @@
-.calculation__container {
-  display:flex;
-  background-color: tomato;
+.calculation .container {
+  display: flex;
+  /* background-color: var(--container-50); */
   position: absolute;
-  width: calc(100% - 32px);
-  height: calc(100% - 76px - 16px);
-  padding: 16px;
-  padding-top: 76px;
+  width: calc(100% - 76px);
+  height: 100%;
+  /* padding: 16px; */
+  margin-left: 76px;
 }
 
-.name {
-  background-color: white;
-  width: 17%;
-  margin-right: 16px;
+.calculation .name {
+  background-color: var(--container-40);
+  width: 30%;
+  /* margin-right: 16px; */
+}
+
+.calculation .title {
+  display: flex;
+  flex-direction: row;
+  /* background-color: whitesmoke; */
+  align-items: center;
+  justify-content: space-between;
+
+  color: var(--font-01);
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .money {
-  background-color: white;
-  width: 48%;
+  background-color: var(--container-50);
+  /* width: 48%; */
   flex: 1;
-  margin-right: 16px;
+  /* margin-right: 16px; */
 }
 
 .column3 {
@@ -34,18 +46,6 @@
   margin-top: 16px;
   width: 100%;
   height: calc(14% - 16px);
-}
-
-.title {
-  display: flex;
-  flex-direction: row;
-  background-color: whitesmoke;
-  align-items: center;
-  justify-content: space-between;
-
-  color: black;
-  font-size: 24px;
-  font-weight: 700;
 }
 
 .title button {

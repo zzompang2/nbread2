@@ -4,6 +4,7 @@ import Home from "./routes/Home";
 import Calculation from "./routes/Calculation";
 import Inquiry from "./routes/Inquiry";
 import "./App.css";
+import "./styles.css";
 
 function App() {
   return (
