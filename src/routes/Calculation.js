@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
 import "./Calculation.css";
-import UsersSelect from "./UsersSelect";
 import Result from "./Result";
 import TitleBar from "./components/TitleBar";
 import NameCard from "./components/NameCard";
+import PaymentCard from "./components/PaymentCard";
 
 let [paidMoneyAll, usedMoneyAll] = [0, 0];
 let middleResult = [
@@ -17,8 +17,8 @@ function Calculation(props) {
     { id: 1, name: "영희", mark: 1 },
   ]);
   const [payments, setPayments] = useState([
-    { id: 0, memo: "결제1", payer: 0, money: 0, users: [0, 1] },
-    { id: 1, memo: "결제2", payer: 1, money: 0, users: [0, 1] },
+    { id: 0, memo: "결제1", payer: 0, money: 0, users: [true, true] },
+    { id: 1, memo: "결제2", payer: 1, money: 0, users: [true, true] },
   ]);
   const [selectedPid, setSelectedPid] = useState(-1); // UsersSelect 가 눌려있는 payment
   const [resultToggle, setResultToggle] = useState(false); // Result 창 토글
@@ -96,7 +96,7 @@ function Calculation(props) {
         memo: "결제" + (newId + 1),
         payer: 0,
         money: 0,
-        users: members.map((member) => member.id),
+        users: members.map((isUser) => true),
       },
     ]);
   }
@@ -128,9 +128,7 @@ function Calculation(props) {
       return {
         ...payment,
         payer: payment.payer > mid ? payment.payer - 1 : payment.payer,
-        users: payment.users
-          .filter((id) => id !== mid)
-          .map((id) => (id < mid ? id : id - 1)),
+        users: payment.users.slice(0, mid).concat(payment.users.slice(mid + 1)),
       };
     });
 
@@ -160,18 +158,6 @@ function Calculation(props) {
   }
 
   /**
-   * MID 를 갖는 멤버의 이름을 리턴한다.
-   * @param {number} mid id of member
-   * @returns
-   */
-  function findName(mid) {
-    for (let i = 0; i < members.length; i++) {
-      if (members[i].id === mid) return members[i].name;
-    }
-    return "X";
-  }
-
-  /**
    * 선택한 멤버를 PID 결제 내역의 PAYER 으로 한다.
    * @param {*} e
    */
@@ -192,12 +178,11 @@ function Calculation(props) {
    * @param {number} mid 멤버의 ID
    */
   function selectUser(pid, mid) {
+    console.log("selectUser/", pid, mid);
     const newPayments = payments.slice();
-    newPayments[pid] = {
-      ...newPayments[pid],
-      users: [...newPayments[pid].users, mid],
-    };
+    newPayments[pid].users[mid] = true;
     setPayments(newPayments);
+    console.log(newPayments[pid].users);
   }
 
   /**
@@ -206,12 +191,11 @@ function Calculation(props) {
    * @param {number} mid 멤버의 ID
    */
   function unselectUser(pid, mid) {
+    console.log("unselectUser/", pid, mid);
     const newPayments = payments.slice();
-    newPayments[pid] = {
-      ...newPayments[pid],
-      users: newPayments[pid].users.filter((id) => id !== mid),
-    };
+    newPayments[pid].users[mid] = false;
     setPayments(newPayments);
+    console.log(newPayments[pid].users);
   }
 
   /**
@@ -231,7 +215,7 @@ function Calculation(props) {
     const newPayments = payments.slice();
     newPayments[pid] = {
       ...newPayments[pid],
-      users: members.map((member) => member.id),
+      users: members.map((member) => true),
     };
     setPayments(newPayments);
   }
@@ -242,11 +226,15 @@ function Calculation(props) {
    */
   function unselectUserAll(pid) {
     const newPayments = payments.slice();
-    newPayments[pid] = { ...newPayments[pid], users: [] };
+    newPayments[pid] = {
+      ...newPayments[pid],
+      users: members.map((member) => false),
+    };
     setPayments(newPayments);
   }
 
   const [selectedNameCardId, setSelectedNameCardId] = useState(-1);
+  const [selectedPaymentCardId, setSelectedPaymentCardId] = useState(-1);
 
   /**
    * ID NameCard 를 선택한다. -1 인 경우, 선택되어 있는 걸 취소한다.
@@ -256,7 +244,15 @@ function Calculation(props) {
   function selectNameCard(id, e = null) {
     console.log("selectNameCard");
     e && e.stopPropagation(); // parent 가 선택되는 걸 막기
+    if (id !== -1) selectPaymentCard(-1);
     if (selectedNameCardId != id) setSelectedNameCardId(id);
+  }
+
+  function selectPaymentCard(id, e = null) {
+    console.log("selectPaymentCard");
+    e && e.stopPropagation(); // parent 가 선택되는 걸 막기
+    if (id !== -1) selectNameCard(-1);
+    if (selectedPaymentCardId != id) setSelectedPaymentCardId(id);
   }
 
   /**
@@ -273,15 +269,18 @@ function Calculation(props) {
       middleResult[payment.payer].paidMoney += money;
 
       /* 나누어 떨어지지 않으면 올림해서 보내기로 한다 */
-      const num = payment.users.length;
+      let num = 0;
+      payment.users.forEach((isUser) => {
+        if (isUser) num++;
+      });
       const rest = money % num;
       if (rest !== 0) {
         const bonus = num - rest; // 결제자가 받을 추가 금액
         money += bonus; // 나누어 떨어지도록 더함
         middleResult[payment.payer].bonus = bonus;
       }
-      payment.users.forEach((mid) => {
-        middleResult[mid].usedMoney += money / num;
+      payment.users.forEach((isUser, idx) => {
+        if (isUser) middleResult[idx].usedMoney += money / num;
       });
     });
 
@@ -297,7 +296,13 @@ function Calculation(props) {
   updateMiddleResult();
 
   return (
-    <div className="calculation" onClick={(e) => selectNameCard(-1, e)}>
+    <div
+      className="calculation"
+      onClick={(e) => {
+        selectNameCard(-1);
+        selectPaymentCard(-1);
+      }}
+    >
       <div className="container">
         <div className="name_frame">
           <TitleBar title="사람들" onClick={addMember} />
@@ -320,68 +325,34 @@ function Calculation(props) {
 
         <div className="payment_frame">
           <TitleBar title="결제내역" onClick={addPayment} />
-          <div className="table__id">
-            <div className="table__id__memo">메모</div>
-            <div className="table__id__payer">결제한 사람</div>
-            <div className="table__id__money">결제한 금액</div>
-            <div className="table__id__users">사용한 사람들</div>
+          <div className="table_titles">
+            <div className="payer">결제한 사람</div>
+            <div className="memo">메모</div>
+            <div className="money">결제한 금액</div>
+            <div className="users">사용한 사람들</div>
           </div>
           {payments.map((payment) => (
-            <div key={payment.id} className="table__element">
-              {/* 메모 */}
-              <input
-                className="table__id__memo"
-                value={payment.memo}
-                placeholder="결제"
-                onChange={(e) => changeMemo(e.target.value, payment.id)}
-              />
-              {/* 결제한 사람 */}
-              <select
-                className="table__id__payer"
-                id={payment.id}
-                value={payment.payer}
-                onChange={changePayer}
-              >
-                {members.map((member) => (
-                  <option key={member.id} value={member.id}>
-                    {member.name}
-                  </option>
-                ))}
-              </select>
-              {/* 결제한 금액 */}
-              <input
-                className="table__id__money"
-                type="number"
-                value={payment.money}
-                placeholder="0"
-                onChange={(e) => changeMoney(e.target.value, payment.id)}
-              />
-              {/* 사용한 사람들 */}
-              <div className="table__id__users">
-                <button onClick={() => popupUsersSelect(payment.id)}>
-                  {payment.users.length === members.length
-                    ? "전체"
-                    : payment.users.length === 0
-                    ? "사용한 사람들을 선택해 주세요"
-                    : payment.users.map((id) => findName(id))}
-                </button>
-                {selectedPid === payment.id ? (
-                  <UsersSelect
-                    pid={payment.id}
-                    users={payment.users}
-                    members={members}
-                    selectUser={selectUser}
-                    unselectUser={unselectUser}
-                    selectUserAll={selectUserAll}
-                    unselectUserAll={unselectUserAll}
-                    popupUsersSelect={popupUsersSelect}
-                  />
-                ) : (
-                  <Fragment />
-                )}
-              </div>
-              <button onClick={() => deletePayment(payment.id)}>X</button>
-            </div>
+            <PaymentCard
+              key={payment.id}
+              id={payment.id}
+              payer={payment.payer}
+              memo={payment.memo}
+              money={payment.money}
+              users={payment.users}
+              members={members}
+              changeMemo={changeMemo}
+              changePayer={changePayer}
+              changeMoney={changeMoney}
+              popupUsersSelect={popupUsersSelect}
+              selectedPid={selectedPid}
+              selectUser={selectUser}
+              unselectUser={unselectUser}
+              selectUserAll={selectUserAll}
+              unselectUserAll={unselectUserAll}
+              deletePayment={deletePayment}
+              selectedPaymentCardId={selectedPaymentCardId}
+              selectPaymentCard={selectPaymentCard}
+            />
           ))}
         </div>
 

@@ -30,10 +30,35 @@
   /* stack */
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 12px;
 }
 
-.result {
+.table_titles {
+  display: flex;
+  flex-direction: row;
+  color: var(--text-02);
+  margin: 12px 0px 0px 26px;
+  gap: 6px;
+  /* background-color: yellowgreen; */
+}
+
+.table_titles .payer {
+  width: 100px;
+}
+
+.table_titles .memo {
+  width: 100px;
+}
+
+.table_titles .money {
+  width: 100px;
+}
+
+.table_titles .users {
+  flex: 1;
+}
+
+/* .result {
   background-color: white;
   height: 86%;
 }
@@ -42,35 +67,6 @@
   margin-top: 16px;
   width: 100%;
   height: calc(14% - 16px);
-}
-
-.table__id {
-  display: flex;
-  flex-direction: row;
-  background-color: yellowgreen;
-}
-
-.table__id__memo {
-  width: 20%;
-}
-
-.table__id__payer {
-  width: 20%;
-}
-
-.table__id__money {
-  width: 20%;
-}
-
-.table__id__users {
-  width: 20%;
-}
-
-.table__element {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  background-color: yellow;
 }
 
 .result__element {
@@ -89,4 +85,19 @@
 
 .result__element__usedMoney {
   width: 25%;
+} */
+
+.handle {
+  display: flex;
+  padding: 0px 8px;
+}
+
+.input-focus {
+  background-color: var(--container-50);
+  padding: 0px 8px;
+}
+
+.input-blur {
+  background-color: unset;
+  padding: 0px;
 }

@@ -8,10 +8,6 @@
   border: 2px solid var(--container-30);
 }
 
-.name-card .handle {
-  padding: 0px 8px;
-}
-
 .name-card .text_frame {
   flex: 1;
   display: flex;
@@ -39,16 +35,6 @@
   color: var(--text-01);
   border-radius: 8px;
   flex: 1;
-}
-
-.input-focus {
-  background-color: var(--container-50);
-  padding: 0px 8px;
-}
-
-.input-blur {
-  background-color: unset;
-  padding: 0px;
 }
 
 .name-card .delete_btn {
