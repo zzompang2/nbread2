@@ -1,40 +1,36 @@
 .calculation .container {
   display: flex;
-  /* background-color: var(--container-50); */
   position: absolute;
   width: calc(100% - 76px);
   height: 100%;
-  /* padding: 16px; */
   margin-left: 76px;
 }
 
-.calculation .name {
+.calculation .name_frame {
   background-color: var(--container-40);
-  width: 30%;
-  /* margin-right: 16px; */
-}
+  width: 250px;
+  padding: 80px 40px;
 
-.calculation .title {
+  /* stack */
   display: flex;
-  flex-direction: row;
-  /* background-color: whitesmoke; */
-  align-items: center;
-  justify-content: space-between;
-
-  color: var(--font-01);
-  font-size: 24px;
-  font-weight: 700;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.money {
-  background-color: var(--container-50);
-  /* width: 48%; */
+.calculation .name_list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calculation .payment_frame {
   flex: 1;
-  /* margin-right: 16px; */
-}
+  padding: 80px 40px;
 
-.column3 {
-  width: 29%;
+  /* stack */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .result {
@@ -46,12 +42,6 @@
   margin-top: 16px;
   width: 100%;
   height: calc(14% - 16px);
-}
-
-.title button {
-  color: green;
-  background-color: unset;
-  border: unset;
 }
 
 .table__id {

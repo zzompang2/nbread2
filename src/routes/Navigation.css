@@ -5,7 +5,7 @@
   width: 60px;
   height: 100%;
   padding: 8px;
-  gap: 10px;
+  gap: 24px;
   background-color: var(--container-50);
   align-items: center;
   z-index: 10;
@@ -14,25 +14,33 @@
 .nav .logo {
   width: 48px;
   height: 48px;
-  background-color: aqua;
+
+  /* 중앙 정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* .nav .logo a {
+.nav .logo a {
   font-size: 16px;
   font-weight: 700;
   text-decoration: none;
-} */
-
-.nav .menus {
-  display: flex;
-  background-color: blue;
-  flex-direction: column;
+  color: var(--icon-01);
 }
 
-.menus a {
-  background-color: white;
+.nav .menu_list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu_list a {
   width: 48px;
   height: 48px;
+  color: var(--icon-01);
+
+  /* 중앙 정렬 */
+  display: flex;
   align-items: center;
   justify-content: center;
 }

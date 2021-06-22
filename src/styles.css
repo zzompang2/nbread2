@@ -1,11 +1,53 @@
 /* 구글 웹 폰트 넣어주는 코드 */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap");
 
-.__light-mode {
+.__basic_style {
+  font-family: "Nanum Gothic", sans-serif;
+}
+.__basic_style button {
+  font-family: "Nanum Gothic", sans-serif;
+  border: unset;
+}
+.__basic_style input {
+  border: unset;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+.__dark_mode {
+  background-color: var(--container-50);
   --container-10: #7d7d7d;
   --container-20: #444750;
   --container-30: #2b2d33;
   --container-40: #25272c;
   --container-50: #22242a;
-  --font-01: white;
+  --text-01: white;
+  --text-02: #7d7d7d;
+  --font-dark: #22242a;
+  --icon-01: white;
+  --icon-02: #7d7d7d;
+  --mark0: #e6194b;
+  --mark1: #3cb44b;
+  --mark2: #ffe119;
+  --mark3: #4363d8;
+  --mark4: #f58231;
+  --mark5: #911eb4;
+  --mark6: #46f0f0;
+  --mark7: #f032e6;
+  --mark8: #bcf60c;
+  --mark9: #fabebe;
+  --mark10: #008080;
+  --mark11: #e6beff;
+  --mark12: #9a6324;
+  --mark13: #fffac8;
+  --mark14: #800000;
+  --mark15: #aaffc3;
+  --mark16: #808000;
+  --mark17: #ffd8b1;
+  --mark18: #000075;
+  --mark19: #808080;
+}
+
+.__dark_mode p {
+  color: white;
+  margin: 0px;
 }

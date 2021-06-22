@@ -1,0 +1,144 @@
+.name-card {
+  background-color: var(--container-30);
+  border-radius: 8px;
+  padding: 12px 12px 12px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid var(--container-30);
+}
+
+.name-card .handle {
+  padding: 0px 8px;
+}
+
+.name-card .text_frame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 4px;
+}
+
+.name-card .text_frame .row {
+  font-size: 16px;
+  color: var(--text-01);
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.name-card .text_frame input {
+  /* focus 되었을 때 height 가 약간 늘어나는데
+     그 차이를 없애주기 위해 높이 고정 */
+  height: 24px;
+  /* focus 될 때 하이라이트 되는 효과 없애기 */
+  outline: none;
+
+  font-size: 16px;
+  color: var(--text-01);
+  border-radius: 8px;
+  flex: 1;
+}
+
+.input-focus {
+  background-color: var(--container-50);
+  padding: 0px 8px;
+}
+
+.input-blur {
+  background-color: unset;
+  padding: 0px;
+}
+
+.name-card .delete_btn {
+  color: var(--icon-02);
+  display: flex;
+}
+
+.name-card .text_frame .sub_title {
+  font-size: 12px;
+  color: var(--text-02);
+}
+
+.name-card .text_frame .mark_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-card .text_frame .mark_list .mark_list_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.name-card .text_frame .mark_list .mark_list_row div {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.name-card .text_frame .mark_list .marked {
+  width: 16px;
+  height: 16px;
+}
+
+.mark0 {
+  color: var(--mark0);
+}
+.mark1 {
+  color: var(--mark1);
+}
+.mark2 {
+  color: var(--mark2);
+}
+.mark3 {
+  color: var(--mark3);
+}
+.mark4 {
+  color: var(--mark4);
+}
+.mark5 {
+  color: var(--mark5);
+}
+.mark6 {
+  color: var(--mark6);
+}
+.mark7 {
+  color: var(--mark7);
+}
+.mark8 {
+  color: var(--mark8);
+}
+.mark9 {
+  color: var(--mark9);
+}
+.mark10 {
+  color: var(--mark10);
+}
+.mark11 {
+  color: var(--mark11);
+}
+.mark12 {
+  color: var(--mark12);
+}
+.mark13 {
+  color: var(--mark13);
+}
+.mark14 {
+  color: var(--mark14);
+}
+.mark15 {
+  color: var(--mark15);
+}
+.mark16 {
+  color: var(--mark16);
+}
+.mark17 {
+  color: var(--mark17);
+}
+.mark18 {
+  color: var(--mark18);
+}
+.mark19 {
+  color: var(--mark19);
+}
