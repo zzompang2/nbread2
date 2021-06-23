@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./PaymentCard.css";
 import { Delete, Circle, Handle } from "../../icons";
-import UsersSelect from "./UsersSelect";
+import UserSelect from "./UserSelect";
 
 export default function PaymentCard({
   id,
@@ -81,29 +81,15 @@ export default function PaymentCard({
         />
       </div>
       {/* 사용한 사람들 */}
-      <div className="users">
-        <p onClick={() => popupUsersSelect(id)}>
-          {countUsers(users) === members.length
-            ? "전체"
-            : countUsers(users) === 0
-            ? "사용한 사람들을 선택해 주세요"
-            : users.map((isUser, idx) => (isUser ? findName(idx) : ""))}
-        </p>
-        {selectedPid === id ? (
-          <UsersSelect
-            pid={id}
-            users={users}
-            members={members}
-            selectUser={selectUser}
-            unselectUser={unselectUser}
-            selectUserAll={selectUserAll}
-            unselectUserAll={unselectUserAll}
-            popupUsersSelect={popupUsersSelect}
-          />
-        ) : (
-          <></>
-        )}
-      </div>
+      <UserSelect
+        style={{ flex: 1 }}
+        options={members}
+        selectedOptions={users}
+        onSelect={(mid) => selectUser(id, mid)}
+        onUnselect={(mid) => unselectUser(id, mid)}
+        onSelectAll={() => selectUserAll(id)}
+        onUnselectAll={() => unselectUserAll(id)}
+      />
       {isSelected ? (
         <div className="delete_btn" onClick={() => deletePayment(id)}>
           <Delete />

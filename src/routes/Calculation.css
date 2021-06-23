@@ -25,6 +25,7 @@
 
 .calculation .payment_frame {
   flex: 1;
+  max-width: 1000px;
   padding: 80px 40px;
 
   /* stack */

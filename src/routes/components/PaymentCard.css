@@ -4,7 +4,7 @@
   align-items: center;
   background-color: var(--container-30);
   border-radius: 8px;
-  padding: 12px 12px 12px 0px;
+  padding: 8px 8px 8px 0px;
   gap: 6px;
   border: 2px solid var(--container-30);
 }
@@ -28,7 +28,7 @@
 .payment_card input {
   /* focus 되었을 때 height 가 약간 늘어나는데
      그 차이를 없애주기 위해 높이 고정 */
-  height: 24px;
+  height: 34px;
   /* focus 될 때 하이라이트 되는 효과 없애기 */
   outline: none;
   /* number type 일 때 화살표 버튼 없애기 */

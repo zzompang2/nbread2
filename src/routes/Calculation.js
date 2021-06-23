@@ -81,6 +81,12 @@ function Calculation(props) {
       ...members,
       { id: newId, name: "이름" + (newId + 1), mark: newId % 20 },
     ]);
+
+    setPayments(
+      payments.map((payment) => {
+        return { ...payment, users: payment.users.concat(true) };
+      })
+    );
   }
 
   /**
