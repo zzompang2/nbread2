@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Colors from "./Colors";
 import NameTag from "./NameTag";
 import "./SingleSelect.css";
 
@@ -16,7 +17,10 @@ export default function SingleSelect({
   return (
     <div className="single-select">
       <div className="selected-options" onClick={() => setIsClicked(true)}>
-        <NameTag name={options[selectedOption].name} />
+        <NameTag
+          name={options[selectedOption].name}
+          color={Colors[options[selectedOption].mark]}
+        />
       </div>
 
       {isClicked ? (
@@ -24,7 +28,10 @@ export default function SingleSelect({
           <div className="unclick" onClick={() => setIsClicked(false)} />
           <div className="option-list">
             <div className="options" onClick={() => setIsClicked(true)}>
-              <NameTag name={options[selectedOption].name} />
+              <NameTag
+                name={options[selectedOption].name}
+                color={Colors[options[selectedOption].mark]}
+              />
             </div>
             <div className="options">
               {options.map((option) => {
@@ -33,6 +40,7 @@ export default function SingleSelect({
                     <NameTag
                       key={option.id}
                       name={option.name}
+                      color={Colors[option.mark]}
                       onClick={() => onSelect(option.id)}
                     />
                   );

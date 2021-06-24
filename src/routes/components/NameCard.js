@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./NameCard.css";
 import { Delete, Circle, Handle } from "../../icons";
+import Colors from "./Colors";
 
 export default function NameCard({
   id,
@@ -15,6 +16,8 @@ export default function NameCard({
 }) {
   const isSelected = id == selectedNameCardId;
 
+  console.log(Colors);
+
   function returnMarkComponents() {
     const result = [],
       row1 = [],
@@ -22,15 +25,12 @@ export default function NameCard({
     for (let i = 0; i < 10; i++) {
       row1.push(
         <div key={i} onClick={() => changeMark(id, i)}>
-          <Circle radius={i == mark ? 9 : 5} className={"mark" + i} />
+          <Circle radius={i == mark ? 9 : 5} color={Colors[i]} />
         </div>
       );
       row2.push(
         <div key={i + 10} onClick={() => changeMark(id, i + 10)}>
-          <Circle
-            radius={i + 10 == mark ? 9 : 5}
-            className={"mark" + (i + 10)}
-          />
+          <Circle radius={i + 10 == mark ? 9 : 5} color={Colors[i + 10]} />
         </div>
       );
     }
@@ -50,7 +50,7 @@ export default function NameCard({
       }
     >
       <div className="handle">
-        <Handle className={"mark" + mark} />
+        <Handle color={Colors[mark]} />
       </div>
       <div className="text-frame">
         <div className="row">

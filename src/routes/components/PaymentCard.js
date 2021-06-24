@@ -3,6 +3,7 @@ import "./PaymentCard.css";
 import { Delete, Circle, Handle } from "../../icons";
 import SingleSelect from "./SingleSelect";
 import MultiSelect from "./MultiSelect";
+import Colors from "./Colors";
 
 export default function PaymentCard({
   id,
@@ -54,7 +55,7 @@ export default function PaymentCard({
       style={isSelected ? { borderColor: "green" } : {}}
     >
       <div className="handle">
-        <Handle className={"mark" + members[payer].mark} />
+        <Handle color={Colors[members[payer].mark]} />
       </div>
       {/* 결제한 사람 */}
       <SingleSelect

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NameTag from "./NameTag";
 import "./MultiSelect.css";
+import Colors from "./Colors";
 
 export default function MultiSelect({
   options,
@@ -29,7 +30,13 @@ export default function MultiSelect({
           <>
             {selectedOptions.map((isSelected, id) => {
               if (isSelected)
-                return <NameTag key={id} name={options[id].name} />;
+                return (
+                  <NameTag
+                    key={id}
+                    name={options[id].name}
+                    color={Colors[options[id].mark]}
+                  />
+                );
             })}
           </>
         )}
@@ -46,6 +53,7 @@ export default function MultiSelect({
                     <NameTag
                       key={id}
                       name={options[id].name}
+                      color={Colors[options[id].mark]}
                       onClick={() => onUnselect(id)}
                     />
                   );
@@ -62,6 +70,7 @@ export default function MultiSelect({
                     <NameTag
                       key={id}
                       name={options[id].name}
+                      color={Colors[options[id].mark]}
                       onClick={() => onSelect(id)}
                     />
                   );
