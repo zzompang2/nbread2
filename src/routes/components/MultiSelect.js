@@ -20,7 +20,7 @@ export default function MultiSelect({
 
   return (
     <div className="multi-select">
-      <div className="selected_options" onClick={() => setIsClicked(true)}>
+      <div className="selected-options" onClick={() => setIsClicked(true)}>
         {selectedOptionsNum == options.length ? (
           <NameTag name="ALL" />
         ) : selectedOptionsNum == 0 ? (
@@ -38,7 +38,7 @@ export default function MultiSelect({
       {isClicked ? (
         <div>
           <div className="unclick" onClick={() => setIsClicked(false)} />
-          <div className="option_list">
+          <div className="option-list">
             <div className="options" onClick={() => setIsClicked(true)}>
               {selectedOptions.map((isSelected, id) => {
                 if (isSelected)
@@ -51,7 +51,7 @@ export default function MultiSelect({
                   );
               })}
             </div>
-            <div className="text_button">
+            <div className="text-button">
               <p onClick={onSelectAll}>모두 선택</p>
               <p onClick={onUnselectAll}>모두 제외</p>
             </div>

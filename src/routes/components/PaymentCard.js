@@ -49,7 +49,7 @@ export default function PaymentCard({
   return (
     <div
       key={id}
-      className="payment_card"
+      className="payment-card"
       onClick={(e) => selectPaymentCard(id, e)}
       style={isSelected ? { borderColor: "green" } : {}}
     >
@@ -95,7 +95,7 @@ export default function PaymentCard({
         onUnselectAll={() => unselectUserAll(id)}
       />
       {isSelected ? (
-        <div className="delete_btn" onClick={() => deletePayment(id)}>
+        <div className="delete-btn" onClick={() => deletePayment(id)}>
           <Delete />
         </div>
       ) : (

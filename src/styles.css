@@ -1,19 +1,19 @@
 /* 구글 웹 폰트 넣어주는 코드 */
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap");
 
-.__basic_style {
+.__basic-style {
   font-family: "Nanum Gothic", sans-serif;
 }
-.__basic_style button {
+.__basic-style button {
   font-family: "Nanum Gothic", sans-serif;
   border: unset;
 }
-.__basic_style input {
+.__basic-style input {
   border: unset;
   font-family: "Nanum Gothic", sans-serif;
 }
 
-.__dark_mode {
+.__dark-mode {
   background-color: var(--container-50);
   --container-10: #7d7d7d;
   --container-20: #444750;
@@ -47,7 +47,7 @@
   --mark19: #808080;
 }
 
-.__dark_mode p {
+.__dark-mode p {
   color: white;
   margin: 0px;
 }

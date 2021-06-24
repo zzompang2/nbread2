@@ -6,7 +6,7 @@
   width: 100px;
 }
 
-.single-select .selected_options {
+.single-select .selected-options {
   height: 34px;
   /* width: 200px; */
   /* flex: 1; */
@@ -35,7 +35,7 @@
   z-index: 1;
 }
 
-.single-select .option_list {
+.single-select .option-list {
   width: calc(100% - 12px);
   max-height: 200px;
   background-color: var(--container-50);
@@ -56,19 +56,19 @@
   gap: 8px;
 }
 
-.single-select .option_list .text_button {
+.single-select .option-list .text-button {
   display: flex;
   flex-direction: row;
   gap: 16px;
   padding: 4px;
 }
 
-.single-select .option_list .text_button p {
+.single-select .option-list .text-button p {
   font-size: 12px;
   color: var(--text-02);
 }
 
-.single-select .option_list .options {
+.single-select .option-list .options {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -76,8 +76,8 @@
   min-height: 22px;
 }
 
-/* .single-select .selected_options .option,
-.single-select .option_list .option {
+/* .single-select .selected-options .option,
+.single-select .option-list .option {
   padding: 4px 8px;
   background-color: green;
   border-radius: 8px;

@@ -1,4 +1,4 @@
-.payment_card {
+.payment-card {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -9,23 +9,23 @@
   border: 2px solid var(--container-30);
 }
 
-.payment_card .column {
+.payment-card .column {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.payment_card .row {
+.payment-card .row {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.payment_card p {
+.payment-card p {
   font-size: 14px;
 }
 
-.payment_card input {
+.payment-card input {
   /* focus 되었을 때 height 가 약간 늘어나는데
      그 차이를 없애주기 위해 높이 고정 */
   height: 34px;
@@ -40,25 +40,25 @@
 }
 
 /* number input 에 화살표 버튼 지우기 */
-.payment_card input::-webkit-inner-spin-button {
+.payment-card input::-webkit-inner-spin-button {
   appearance: none;
 }
 
-.payment_card .payer {
+.payment-card .payer {
   width: 100px;
 }
 
-.payment_card .memo,
-.payment_card .money {
+.payment-card .memo,
+.payment-card .money {
   display: flex;
   width: 100px;
 }
 
-.payment_card .users {
+.payment-card .users {
   flex: 1;
 }
 
-.payment_card .delete_btn {
+.payment-card .delete-btn {
   color: var(--icon-02);
   display: flex;
 }

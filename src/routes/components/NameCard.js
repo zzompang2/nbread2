@@ -34,8 +34,8 @@ export default function NameCard({
         </div>
       );
     }
-    result.push(<div className="mark_list_row">{row1}</div>);
-    result.push(<div className="mark_list_row">{row2}</div>);
+    result.push(<div className="mark-list-row">{row1}</div>);
+    result.push(<div className="mark-list-row">{row2}</div>);
     return result;
   }
 
@@ -52,7 +52,7 @@ export default function NameCard({
       <div className="handle">
         <Handle className={"mark" + mark} />
       </div>
-      <div className="text_frame">
+      <div className="text-frame">
         <div className="row">
           <input
             className={isSelected ? "input-focus" : "input-blur"}
@@ -63,7 +63,7 @@ export default function NameCard({
             onChange={(e) => changeName(e.target.value, id)}
           />
           {isSelected ? (
-            <div className="delete_btn" onClick={() => deleteMember(id)}>
+            <div className="delete-btn" onClick={() => deleteMember(id)}>
               <Delete />
             </div>
           ) : (
@@ -71,9 +71,9 @@ export default function NameCard({
           )}
         </div>
         {isSelected ? (
-          <div className="mark_list">{returnMarkComponents()}</div>
+          <div className="mark-list">{returnMarkComponents()}</div>
         ) : (
-          <p className="sub_title">총 결제 금액: {totalPaid}원</p>
+          <p className="sub-title">총 결제 금액: {totalPaid}원</p>
         )}
       </div>
     </div>

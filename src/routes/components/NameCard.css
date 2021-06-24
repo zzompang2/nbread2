@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.name-card .text_frame {
+.name-card .text-frame {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
   padding-left: 4px;
 }
 
-.name-card .text_frame .row {
+.name-card .text-frame .row {
   font-size: 16px;
   color: var(--text-01);
   display: flex;
@@ -24,7 +24,7 @@
   gap: 4px;
 }
 
-.name-card .text_frame input {
+.name-card .text-frame input {
   /* focus 되었을 때 height 가 약간 늘어나는데
      그 차이를 없애주기 위해 높이 고정 */
   height: 24px;
@@ -38,33 +38,33 @@
   width: 0;
 }
 
-.name-card .delete_btn {
+.name-card .delete-btn {
   color: var(--icon-02);
   display: flex;
 }
 
-.name-card .text_frame .sub_title {
+.name-card .text-frame .sub-title {
   font-size: 12px;
   color: var(--text-02);
 }
 
-.name-card .text_frame .mark_list {
+.name-card .text-frame .mark-list {
   display: flex;
   flex-direction: column;
 }
 
-.name-card .text_frame .mark_list .mark_list_row {
+.name-card .text-frame .mark-list .mark-list-row {
   display: flex;
   flex-direction: row;
 }
 
-.name-card .text_frame .mark_list .mark_list_row div {
+.name-card .text-frame .mark-list .mark-list-row div {
   align-items: center;
   justify-content: center;
   display: flex;
 }
 
-.name-card .text_frame .mark_list .marked {
+.name-card .text-frame .mark-list .marked {
   width: 16px;
   height: 16px;
 }

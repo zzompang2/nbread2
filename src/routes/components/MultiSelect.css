@@ -7,7 +7,7 @@
   flex: 1;
 }
 
-.multi-select .selected_options {
+.multi-select .selected-options {
   height: 34px;
   /* width: 200px; */
   /* flex: 1; */
@@ -36,7 +36,7 @@
   z-index: 1;
 }
 
-.multi-select .option_list {
+.multi-select .option-list {
   width: calc(100% - 12px);
   max-height: 200px;
   background-color: var(--container-50);
@@ -57,19 +57,19 @@
   gap: 8px;
 }
 
-.multi-select .option_list .text_button {
+.multi-select .option-list .text-button {
   display: flex;
   flex-direction: row;
   gap: 16px;
   padding: 4px;
 }
 
-.multi-select .option_list .text_button p {
+.multi-select .option-list .text-button p {
   font-size: 12px;
   color: var(--text-02);
 }
 
-.multi-select .option_list .options {
+.multi-select .option-list .options {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -77,8 +77,8 @@
   min-height: 22px;
 }
 
-/* .multi-select .selected_options .option,
-.multi-select .option_list .option {
+/* .multi-select .selected-options .option,
+.multi-select .option-list .option {
   padding: 4px 8px;
   background-color: green;
   border-radius: 8px;

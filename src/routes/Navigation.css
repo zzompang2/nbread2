@@ -28,13 +28,13 @@
   color: var(--icon-01);
 }
 
-.nav .menu_list {
+.nav .menu-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.menu_list a {
+.menu-list a {
   width: 48px;
   height: 48px;
   color: var(--icon-01);

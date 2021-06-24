@@ -15,14 +15,14 @@ export default function SingleSelect({
 
   return (
     <div className="single-select">
-      <div className="selected_options" onClick={() => setIsClicked(true)}>
+      <div className="selected-options" onClick={() => setIsClicked(true)}>
         <NameTag name={options[selectedOption].name} />
       </div>
 
       {isClicked ? (
         <div>
           <div className="unclick" onClick={() => setIsClicked(false)} />
-          <div className="option_list">
+          <div className="option-list">
             <div className="options" onClick={() => setIsClicked(true)}>
               <NameTag name={options[selectedOption].name} />
             </div>

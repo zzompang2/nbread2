@@ -8,7 +8,7 @@ export default function Navigation() {
       <div className="logo">
         <Link to="/">N BREAD</Link>
       </div>
-      <div className="menu_list">
+      <div className="menu-list">
         <Link to="/">
           <Home />
         </Link>

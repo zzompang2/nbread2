@@ -6,7 +6,7 @@
   margin-left: 80px; /* Navigation width */
 }
 
-.calculation .name_frame {
+.calculation .name-frame {
   background-color: var(--container-40);
   padding: 80px 40px;
 
@@ -16,13 +16,13 @@
   gap: 24px;
 }
 
-.calculation .name_list {
+.calculation .name-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.calculation .payment_frame {
+.calculation .payment-frame {
   flex: 1;
   max-width: 1000px;
   padding: 80px 40px;
@@ -33,7 +33,7 @@
   gap: 12px;
 }
 
-.table_titles {
+.table-titles {
   display: flex;
   flex-direction: row;
   color: var(--text-02);
@@ -42,19 +42,19 @@
   /* background-color: yellowgreen; */
 }
 
-.table_titles .payer {
+.table-titles .payer {
   width: 100px;
 }
 
-.table_titles .memo {
+.table-titles .memo {
   width: 100px;
 }
 
-.table_titles .money {
+.table-titles .money {
   width: 100px;
 }
 
-.table_titles .users {
+.table-titles .users {
   flex: 1;
 }
 
@@ -69,21 +69,21 @@
   height: calc(14% - 16px);
 }
 
-.result__element {
+.result-element {
   display: flex;
   flex-direction: row;
   background-color: violet;
 }
 
-.result__element__name {
+.result-element-name {
   width: 25%;
 }
 
-.result__element__paidMoney {
+.result-element-paidMoney {
   width: 25%;
 }
 
-.result__element__usedMoney {
+.result-element-usedMoney {
   width: 25%;
 } */
 

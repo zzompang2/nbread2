@@ -310,9 +310,9 @@ function Calculation(props) {
       }}
     >
       <div className="container">
-        <div className="name_frame">
+        <div className="name-frame">
           <TitleBar title="사람들" onClick={addMember} />
-          <div className="name_list">
+          <div className="name-list">
             {members.map((member) => (
               <NameCard
                 key={member.id}
@@ -329,9 +329,9 @@ function Calculation(props) {
           </div>
         </div>
 
-        <div className="payment_frame">
+        <div className="payment-frame">
           <TitleBar title="결제내역" onClick={addPayment} />
-          <div className="table_titles">
+          <div className="table-titles">
             <div className="payer">결제한 사람</div>
             <div className="memo">메모</div>
             <div className="money">결제한 금액</div>
@@ -367,36 +367,36 @@ function Calculation(props) {
 						<div className="title">
 							중간 계산 결과
 						</div>
-						<div className="table__id">
-							<div className="result__element__name">이름</div>
-							<div className="result__element__paidMoney">총 결제 금액</div>
-							<div className="result__element__usedMoney">총 사용 금액</div>
-							<div className="result__element__usedMoney">보너스</div>
+						<div className="table-id">
+							<div className="result-element-name">이름</div>
+							<div className="result-element-paidMoney">총 결제 금액</div>
+							<div className="result-element-usedMoney">총 사용 금액</div>
+							<div className="result-element-usedMoney">보너스</div>
 						</div>
 						{middleResult.map(res => 
-							<div key={res.id} className="result__element">
-								<div className="result__element__name">
+							<div key={res.id} className="result-element">
+								<div className="result-element-name">
 									{res.name}
 								</div>
-								<div className="result__element__paidMoney">
+								<div className="result-element-paidMoney">
 									{res.paidMoney}
 								</div>
-								<div className="result__element__usedMoney">
+								<div className="result-element-usedMoney">
 									{res.usedMoney}
 								</div>
-								<div className="result__element__usedMoney">
+								<div className="result-element-usedMoney">
 									{res.bonus}
 								</div>
 							</div>
 						)}
-						<div className="result__element">
-								<div className="result__element__name">
+						<div className="result-element">
+								<div className="result-element-name">
 									총 합
 								</div>
-								<div className="result__element__paidMoney">
+								<div className="result-element-paidMoney">
 									{paidMoneyAll}
 								</div>
-								<div className="result__element__usedMoney">
+								<div className="result-element-usedMoney">
 									{usedMoneyAll}
 								</div>
 							</div>
