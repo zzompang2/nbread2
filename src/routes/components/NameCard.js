@@ -43,7 +43,11 @@ export default function NameCard({
     <div
       className="name-card"
       onClick={(e) => selectNameCard(id, e)}
-      style={isSelected ? { borderColor: "green" } : {}}
+      style={
+        isSelected
+          ? { borderWidth: "2px", borderStyle: "solid", borderColor: "green" }
+          : {}
+      }
     >
       <div className="handle">
         <Handle className={"mark" + mark} />

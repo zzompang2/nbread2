@@ -3,12 +3,11 @@
   position: absolute;
   width: calc(100% - 76px);
   height: 100%;
-  margin-left: 76px;
+  margin-left: 80px; /* Navigation width */
 }
 
 .calculation .name_frame {
   background-color: var(--container-40);
-  width: 250px;
   padding: 80px 40px;
 
   /* stack */
