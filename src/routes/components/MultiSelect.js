@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NameTag from "./NameTag";
 import "./MultiSelect.css";
 
 export default function MultiSelect({
@@ -8,8 +9,6 @@ export default function MultiSelect({
   onUnselect,
   onSelectAll,
   onUnselectAll,
-  style, // [결제한 사람]과 [사용한 사람들] 두 곳 모두 이 컴포넌트로 사용하기 위해.
-  ...rest
 }) {
   console.log("MultiSelect");
 
@@ -19,27 +18,18 @@ export default function MultiSelect({
     return result + isSelected;
   }, 0);
 
-  function popupOptionList(toggle) {
-    console.log("popupOptionList", toggle);
-    setIsClicked(toggle);
-  }
-
   return (
-    <div className="user_select" style={style}>
-      <div className="selected_options" onClick={() => popupOptionList(true)}>
+    <div className="multi-select">
+      <div className="selected_options" onClick={() => setIsClicked(true)}>
         {selectedOptionsNum == options.length ? (
-          <p className="option">ALL</p>
+          <NameTag name="ALL" />
         ) : selectedOptionsNum == 0 ? (
-          <p className="option">반드시 한 명 이상 선택해 주세요</p>
+          <NameTag name="반드시 한 명 이상 선택해 주세요" />
         ) : (
           <>
             {selectedOptions.map((isSelected, id) => {
               if (isSelected)
-                return (
-                  <p key={id} className="option">
-                    {options[id].name}
-                  </p>
-                );
+                return <NameTag key={id} name={options[id].name} />;
             })}
           </>
         )}
@@ -47,19 +37,17 @@ export default function MultiSelect({
 
       {isClicked ? (
         <div>
-          <div className="unclick" onClick={() => popupOptionList(false)} />
+          <div className="unclick" onClick={() => setIsClicked(false)} />
           <div className="option_list">
-            <div className="options" onClick={() => popupOptionList(true)}>
+            <div className="options" onClick={() => setIsClicked(true)}>
               {selectedOptions.map((isSelected, id) => {
                 if (isSelected)
                   return (
-                    <p
+                    <NameTag
                       key={id}
-                      className="option"
+                      name={options[id].name}
                       onClick={() => onUnselect(id)}
-                    >
-                      {options[id].name}
-                    </p>
+                    />
                   );
               })}
             </div>
@@ -71,9 +59,11 @@ export default function MultiSelect({
               {selectedOptions.map((isSlected, id) => {
                 if (!isSlected)
                   return (
-                    <p key={id} className="option" onClick={() => onSelect(id)}>
-                      {options[id].name}
-                    </p>
+                    <NameTag
+                      key={id}
+                      name={options[id].name}
+                      onClick={() => onSelect(id)}
+                    />
                   );
               })}
             </div>

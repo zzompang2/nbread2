@@ -1,13 +1,13 @@
-.user_select {
+.multi-select {
   position: relative;
 
   /* width 값이 있고 flex 1 인 거랑
      없고 flex 1 인 거랑 결과가 다르다. 이유는 아직 모르겠다.. */
   width: 100px;
-  /* flex: 1; */
+  flex: 1;
 }
 
-.user_select .selected_options {
+.multi-select .selected_options {
   height: 34px;
   /* width: 200px; */
   /* flex: 1; */
@@ -26,16 +26,17 @@
   overflow: hidden;
 }
 
-.user_select .unclick {
+.multi-select .unclick {
   width: 100%;
   height: 100%;
   position: fixed;
   background-color: rgb(0 0 0 / 50%);
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
-.user_select .option_list {
+.multi-select .option_list {
   width: calc(100% - 12px);
   max-height: 200px;
   background-color: var(--container-50);
@@ -49,26 +50,26 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 1;
+  z-index: 2;
 
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.user_select .option_list .text_button {
+.multi-select .option_list .text_button {
   display: flex;
   flex-direction: row;
   gap: 16px;
   padding: 4px;
 }
 
-.user_select .option_list .text_button p {
+.multi-select .option_list .text_button p {
   font-size: 12px;
   color: var(--text-02);
 }
 
-.user_select .option_list .options {
+.multi-select .option_list .options {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -76,10 +77,10 @@
   min-height: 22px;
 }
 
-.user_select .selected_options .option,
-.user_select .option_list .option {
+/* .multi-select .selected_options .option,
+.multi-select .option_list .option {
   padding: 4px 8px;
   background-color: green;
   border-radius: 8px;
   font-size: 12px;
-}
+} */

@@ -58,7 +58,6 @@ export default function PaymentCard({
       </div>
       {/* 결제한 사람 */}
       <SingleSelect
-        style={{ width: "100px" }}
         options={members}
         selectedOption={payer}
         onSelect={(mid) => changePayer(id, mid)}
@@ -66,7 +65,6 @@ export default function PaymentCard({
       {/* 메모 */}
       <div className="memo">
         <input
-          style={{ flex: "1", width: "0" }}
           className={isSelected ? "input-focus" : "input-blur"}
           value={memo}
           placeholder={"결제" + id}

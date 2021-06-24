@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NameTag from "./NameTag";
 import "./SingleSelect.css";
 
 export default function SingleSelect({
@@ -9,40 +10,31 @@ export default function SingleSelect({
   onUnselect,
   onSelectAll,
   onUnselectAll,
-  style, // [결제한 사람]과 [사용한 사람들] 두 곳 모두 이 컴포넌트로 사용하기 위해.
-  ...rest
 }) {
   const [isClicked, setIsClicked] = useState(false);
 
-  function popupOptionList(toggle) {
-    console.log("popupOptionList", toggle);
-    setIsClicked(toggle);
-  }
-
   return (
-    <div className="user_select" style={style}>
-      <div className="selected_options" onClick={() => popupOptionList(true)}>
-        <p className="option">{options[selectedOption].name}</p>
+    <div className="single-select">
+      <div className="selected_options" onClick={() => setIsClicked(true)}>
+        <NameTag name={options[selectedOption].name} />
       </div>
 
       {isClicked ? (
         <div>
-          <div className="unclick" onClick={() => popupOptionList(false)} />
+          <div className="unclick" onClick={() => setIsClicked(false)} />
           <div className="option_list">
-            <div className="options" onClick={() => popupOptionList(true)}>
-              <p className="option">{options[selectedOption].name}</p>
+            <div className="options" onClick={() => setIsClicked(true)}>
+              <NameTag name={options[selectedOption].name} />
             </div>
             <div className="options">
               {options.map((option) => {
                 if (option.id !== selectedOption)
                   return (
-                    <p
+                    <NameTag
                       key={option.id}
-                      className="option"
+                      name={option.name}
                       onClick={() => onSelect(option.id)}
-                    >
-                      {option.name}
-                    </p>
+                    />
                   );
               })}
             </div>
