@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./UserSelect.css";
+import "./MultiSelect.css";
 
-export default function UserSelect({
+export default function MultiSelect({
   options,
   selectedOptions,
   onSelect,
@@ -11,7 +11,7 @@ export default function UserSelect({
   style, // [결제한 사람]과 [사용한 사람들] 두 곳 모두 이 컴포넌트로 사용하기 위해.
   ...rest
 }) {
-  console.log("UserSelect");
+  console.log("MultiSelect");
 
   const [isClicked, setIsClicked] = useState(false);
   const selectedOptionsNum = selectedOptions.reduce((result, isSelected) => {

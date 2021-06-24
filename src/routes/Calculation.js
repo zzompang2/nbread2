@@ -165,15 +165,15 @@ function Calculation(props) {
 
   /**
    * 선택한 멤버를 PID 결제 내역의 PAYER 으로 한다.
-   * @param {*} e
+   * @param {number} pid id of payment
+   * @param {number} mid id of member
    */
-  function changePayer(e) {
-    const { id: pid, value: newPayer } = e.target;
-    console.log("changePayer/(결제 내역, 새로운 결제자)의 id =", pid, newPayer);
+  function changePayer(pid, mid) {
+    console.log("changePayer/(결제 내역, 새로운 결제자)의 id =", pid, mid);
     const newPayments = payments.slice();
     newPayments[Number(pid)] = {
       ...newPayments[Number(pid)],
-      payer: Number(newPayer),
+      payer: Number(mid),
     };
     setPayments(newPayments);
   }

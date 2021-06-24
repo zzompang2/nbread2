@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./PaymentCard.css";
 import { Delete, Circle, Handle } from "../../icons";
-import UserSelect from "./UserSelect";
+import SingleSelect from "./SingleSelect";
+import MultiSelect from "./MultiSelect";
 
 export default function PaymentCard({
   id,
@@ -56,7 +57,12 @@ export default function PaymentCard({
         <Handle className={"mark" + members[payer].mark} />
       </div>
       {/* 결제한 사람 */}
-      <p className="payer">{members[payer].name}</p>
+      <SingleSelect
+        style={{ width: "100px" }}
+        options={members}
+        selectedOption={payer}
+        onSelect={(mid) => changePayer(id, mid)}
+      />
       {/* 메모 */}
       <div className="memo">
         <input
@@ -81,7 +87,7 @@ export default function PaymentCard({
         />
       </div>
       {/* 사용한 사람들 */}
-      <UserSelect
+      <MultiSelect
         style={{ flex: 1 }}
         options={members}
         selectedOptions={users}
