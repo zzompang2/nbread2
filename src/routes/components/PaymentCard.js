@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./PaymentCard.css";
+import "./PaymentCard.scss";
 import { Delete, Circle, Handle } from "../../icons";
 import SingleSelect from "./SingleSelect";
 import MultiSelect from "./MultiSelect";
@@ -55,7 +55,7 @@ export default function PaymentCard({
       style={isSelected ? { borderColor: "green" } : {}}
     >
       <div className="handle">
-        <Handle color={Colors[members[payer].mark]} />
+        <Handle />
       </div>
       {/* 결제한 사람 */}
       <SingleSelect

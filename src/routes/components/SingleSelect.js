@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Colors from "./Colors";
 import NameTag from "./NameTag";
-import "./SingleSelect.css";
+import "./SingleSelect.scss";
 
 export default function SingleSelect({
   options,

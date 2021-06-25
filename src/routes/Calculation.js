@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import "./Calculation.css";
+import "./Calculation.scss";
 import Result from "./Result";
 import TitleBar from "./components/TitleBar";
 import NameCard from "./components/NameCard";

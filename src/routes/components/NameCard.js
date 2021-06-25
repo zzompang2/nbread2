@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./NameCard.css";
+import "./NameCard.scss";
 import { Delete, Circle, Handle } from "../../icons";
 import Colors from "./Colors";
 
@@ -50,7 +50,7 @@ export default function NameCard({
       }
     >
       <div className="handle">
-        <Handle color={Colors[mark]} />
+        <Handle />
       </div>
       <div className="text-frame">
         <div className="row">

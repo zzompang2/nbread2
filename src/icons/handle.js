@@ -1,4 +1,4 @@
-export function Handle({ color = "" }) {
+export function Handle({ color = "red" }) {
   return (
     <svg
       width="4"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Navigation.css";
+import "./Navigation.scss";
 import { Home, DollarSign, Mail } from "../icons";
 export default function Navigation() {
   return (

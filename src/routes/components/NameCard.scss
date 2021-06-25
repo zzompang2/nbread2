@@ -1,0 +1,71 @@
+.name-card {
+  width: 250px;
+  background-color: var(--container-30);
+  border-radius: 8px;
+  padding: 12px 12px 12px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+
+  .text-frame {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 4px;
+  }
+
+  .text-frame .row {
+    font-size: 16px;
+    color: var(--text-01);
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .text-frame input {
+    /* focus 되었을 때 height 가 약간 늘어나는데
+     그 차이를 없애주기 위해 높이 고정 */
+    height: 24px;
+    /* focus 될 때 하이라이트 되는 효과 없애기 */
+    outline: none;
+
+    font-size: 16px;
+    color: var(--text-01);
+    border-radius: 8px;
+    flex: 1;
+    width: 0;
+  }
+
+  .delete-btn {
+    color: var(--icon-02);
+    display: flex;
+  }
+
+  .text-frame .sub-title {
+    font-size: 12px;
+    color: var(--text-02);
+  }
+
+  .text-frame .mark-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .text-frame .mark-list .mark-list-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .text-frame .mark-list .mark-list-row div {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .text-frame .mark-list .marked {
+    width: 16px;
+    height: 16px;
+  }
+}

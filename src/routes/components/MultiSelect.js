@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NameTag from "./NameTag";
-import "./MultiSelect.css";
+import "./MultiSelect.scss";
 import Colors from "./Colors";
 
 export default function MultiSelect({
