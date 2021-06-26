@@ -52,10 +52,14 @@ export default function PaymentCard({
       key={id}
       className="payment-card"
       onClick={(e) => selectPaymentCard(id, e)}
-      style={isSelected ? { borderColor: "green" } : {}}
+      // style={
+      //   isSelected
+      //     ? { borderWidth: "2px", borderStyle: "solid", borderColor: "green" }
+      //     : {}
+      // }
     >
       <div className="hover-space" />
-      <div className="handle">
+      <div className="handle" onClick={() => deletePayment(id)}>
         <Handle />
       </div>
       {/* 결제한 사람 */}
@@ -96,13 +100,6 @@ export default function PaymentCard({
         onSelectAll={() => selectUserAll(id)}
         onUnselectAll={() => unselectUserAll(id)}
       />
-      {isSelected ? (
-        <div className="delete-btn" onClick={() => deletePayment(id)}>
-          <Delete />
-        </div>
-      ) : (
-        <></>
-      )}
     </div>
   );
 }

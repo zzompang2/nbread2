@@ -43,13 +43,13 @@ export default function NameCard({
     <div
       className="name-card"
       onClick={(e) => selectNameCard(id, e)}
-      style={
-        isSelected
-          ? { borderWidth: "2px", borderStyle: "solid", borderColor: "green" }
-          : {}
-      }
+      // style={
+      //   isSelected
+      //     ? { borderWidth: "2px", borderStyle: "solid", borderColor: "green" }
+      //     : {}
+      // }
     >
-      <div className="handle">
+      <div className="handle" onClick={() => deleteMember(id)}>
         <Handle />
       </div>
       <div className="hover-space" />
@@ -63,13 +63,6 @@ export default function NameCard({
             autoComplete="off"
             onChange={(e) => changeName(e.target.value, id)}
           />
-          {isSelected ? (
-            <div className="delete-btn" onClick={() => deleteMember(id)}>
-              <Delete />
-            </div>
-          ) : (
-            <></>
-          )}
         </div>
         {isSelected ? (
           <div className="mark-list">{returnMarkComponents()}</div>
