@@ -54,6 +54,7 @@ export default function PaymentCard({
       onClick={(e) => selectPaymentCard(id, e)}
       style={isSelected ? { borderColor: "green" } : {}}
     >
+      <div className="hover-space" />
       <div className="handle">
         <Handle />
       </div>

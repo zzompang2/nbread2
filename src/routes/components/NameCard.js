@@ -52,6 +52,7 @@ export default function NameCard({
       <div className="handle">
         <Handle />
       </div>
+      <div className="hover-space" />
       <div className="text-frame">
         <div className="row">
           <input

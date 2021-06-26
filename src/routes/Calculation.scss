@@ -64,8 +64,13 @@
 }
 
 .handle {
-  display: flex;
-  padding: 0px 8px;
+  display: none; // visibility: hidden;
+  width: 30px;
+  position: absolute;
+  top: 12px;
+  left: -30px;
+  justify-content: center;
+  z-index: 3;
 }
 
 .input-focus {
