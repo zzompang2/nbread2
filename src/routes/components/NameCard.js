@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./NameCard.scss";
 import { Delete, Circle, Handle } from "../../icons";
 import Colors from "./Colors";
+import Input from "./Input";
 
 export default function NameCard({
   id,
@@ -40,30 +41,19 @@ export default function NameCard({
   }
 
   return (
-    <div
-      className="name-card"
-      onClick={(e) => selectNameCard(id, e)}
-      // style={
-      //   isSelected
-      //     ? { borderWidth: "2px", borderStyle: "solid", borderColor: "green" }
-      //     : {}
-      // }
-    >
+    <div className="name-card" onClick={(e) => selectNameCard(id, e)}>
       <div className="handle" onClick={() => deleteMember(id)}>
         <Handle />
       </div>
       <div className="hover-space" />
       <div className="text-frame">
-        <div className="row">
-          <input
-            className={isSelected ? "input-focus" : "input-blur"}
-            value={name}
-            placeholder="이름"
-            disabled={!isSelected}
-            autoComplete="off"
-            onChange={(e) => changeName(e.target.value, id)}
-          />
-        </div>
+        <Input
+          isSelected={isSelected}
+          value={name}
+          placeholder={"이름" + (id + 1)}
+          onChange={changeName}
+          id={id}
+        />
         {isSelected ? (
           <div className="mark-list">{returnMarkComponents()}</div>
         ) : (

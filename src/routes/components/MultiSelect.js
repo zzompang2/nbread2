@@ -23,9 +23,10 @@ export default function MultiSelect({
     <div className="multi-select">
       <div className="selected-options" onClick={() => setIsClicked(true)}>
         {selectedOptionsNum == options.length ? (
-          <NameTag name="ALL" />
+          <NameTag className="everyone" name="전체" color={Colors[20]} />
         ) : selectedOptionsNum == 0 ? (
-          <NameTag name="반드시 한 명 이상 선택해 주세요" />
+          // <NameTag name="반드시 한 명 이상 선택해 주세요" />
+          <p className="nobody">반드시 한 명 이상 선택해 주세요</p>
         ) : (
           <>
             {selectedOptions.map((isSelected, id) => {
@@ -33,6 +34,7 @@ export default function MultiSelect({
                 return (
                   <NameTag
                     key={id}
+                    id
                     name={options[id].name}
                     color={Colors[options[id].mark]}
                   />
@@ -47,17 +49,22 @@ export default function MultiSelect({
           <div className="unclick" onClick={() => setIsClicked(false)} />
           <div className="option-list">
             <div className="options" onClick={() => setIsClicked(true)}>
-              {selectedOptions.map((isSelected, id) => {
-                if (isSelected)
-                  return (
-                    <NameTag
-                      key={id}
-                      name={options[id].name}
-                      color={Colors[options[id].mark]}
-                      onClick={() => onUnselect(id)}
-                    />
-                  );
-              })}
+              {selectedOptionsNum == 0 ? (
+                <p className="nobody">반드시 한 명 이상 선택해 주세요</p>
+              ) : (
+                selectedOptions.map((isSelected, id) => {
+                  if (isSelected)
+                    return (
+                      <NameTag
+                        key={id}
+                        id
+                        name={options[id].name}
+                        color={Colors[options[id].mark]}
+                        onClick={() => onUnselect(id)}
+                      />
+                    );
+                })
+              )}
             </div>
             <div className="text-button">
               <p onClick={onSelectAll}>모두 선택</p>
@@ -69,6 +76,7 @@ export default function MultiSelect({
                   return (
                     <NameTag
                       key={id}
+                      id
                       name={options[id].name}
                       color={Colors[options[id].mark]}
                       onClick={() => onSelect(id)}

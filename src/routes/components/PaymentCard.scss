@@ -4,10 +4,10 @@
   align-items: center;
   background-color: var(--container-30);
   border-radius: 8px;
-  padding: 8px;
-  gap: 6px;
+  padding: 4px;
+  height: 52px;
+  gap: 18px;
   position: relative;
-  z-index: 1; // 배경보다 위로
 
   .hover-space {
     // background-color: #00ff0033;
@@ -27,43 +27,34 @@
 
   p {
     font-size: 14px;
+    color: var(--text-02);
   }
 
-  input {
-    /* focus 되었을 때 height 가 약간 늘어나는데
-     그 차이를 없애주기 위해 높이 고정 */
-    height: 34px;
-    /* focus 될 때 하이라이트 되는 효과 없애기 */
-    outline: none;
-    /* number type 일 때 화살표 버튼 없애기 */
-    -webkit-appearance: none;
+  // input {
+  //   /* focus 되었을 때 height 가 약간 늘어나는데
+  //    그 차이를 없애주기 위해 높이 고정 */
+  //   height: 34px;
+  //   /* focus 될 때 하이라이트 되는 효과 없애기 */
+  //   outline: none;
+  //   /* number type 일 때 화살표 버튼 없애기 */
+  //   -webkit-appearance: none;
 
-    font-size: 14px;
-    color: var(--text-01);
-    border-radius: 8px;
-  }
+  //   font-size: 14px;
+  //   color: var(--text-01);
+  //   border-radius: 8px;
+  // }
 
   /* number input 에 화살표 버튼 지우기 */
   input::-webkit-inner-spin-button {
     appearance: none;
   }
 
-  .payer {
-    width: 100px;
-  }
-
+  .payer,
   .memo,
   .money {
-    display: flex;
     width: 100px;
   }
-
-  .users {
-    flex: 1;
-  }
-
-  .delete-btn {
-    color: var(--icon-02);
-    display: flex;
+  .count-users {
+    width: 50px;
   }
 }

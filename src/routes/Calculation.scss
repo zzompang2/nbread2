@@ -5,7 +5,7 @@
   .container {
     display: flex;
     position: absolute;
-    width: calc(100% - 76px);
+    width: calc(100% - 80px);
     height: 100%;
     margin-left: 80px; /* Navigation width */
   }
@@ -20,10 +20,15 @@
     gap: 24px;
   }
 
-  .name-list {
+  .name-list,
+  .payment-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+    /* 스크롤 만들기 */
+    overflow-y: auto;
+    height: 100%;
   }
 
   .payment-frame {
@@ -42,24 +47,28 @@
   display: flex;
   flex-direction: row;
   color: var(--text-02);
-  margin: 12px 0px 0px 26px;
-  gap: 6px;
-  /* background-color: yellowgreen; */
+  margin-left: 4px; // PaymentCard 의 padding 과 맞추기 위해
+  gap: 18px;
+  font-size: 14px;
 
   .payer {
     width: 100px;
+    padding-left: 6px; // NameTag 의 padding 과 맞추기 위해
   }
 
   .memo {
     width: 100px;
+    padding-left: 8px;
   }
 
   .money {
     width: 100px;
+    text-align: end;
   }
 
   .users {
     flex: 1;
+    padding-left: 76px;
   }
 }
 
@@ -72,14 +81,4 @@
   justify-content: center;
   z-index: 3;
   color: var(--icon-02);
-}
-
-.input-focus {
-  background-color: var(--container-50);
-  padding: 0px 8px;
-}
-
-.input-blur {
-  background-color: unset;
-  padding: 0px;
 }

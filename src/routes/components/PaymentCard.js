@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./PaymentCard.scss";
-import { Delete, Circle, Handle } from "../../icons";
+import { Circle, Handle } from "../../icons";
 import SingleSelect from "./SingleSelect";
 import MultiSelect from "./MultiSelect";
-import Colors from "./Colors";
+import Input from "./Input";
 
 export default function PaymentCard({
   id,
@@ -15,8 +15,6 @@ export default function PaymentCard({
   changeMemo,
   changePayer,
   changeMoney,
-  popupUsersSelect,
-  selectedPid,
   selectUser,
   unselectUser,
   selectUserAll,
@@ -27,19 +25,7 @@ export default function PaymentCard({
 }) {
   const isSelected = id == selectedPaymentCardId;
 
-  /**
-   * MID 를 갖는 멤버의 이름을 리턴한다.
-   * @param {number} mid id of member
-   * @returns
-   */
-  function findName(mid) {
-    for (let i = 0; i < members.length; i++) {
-      if (members[i].id === mid) return members[i].name;
-    }
-    return "X";
-  }
-
-  function countUsers(users) {
+  function countUsers() {
     let num = 0;
     users.forEach((isUser) => {
       if (isUser) num++;
@@ -70,29 +56,31 @@ export default function PaymentCard({
       />
       {/* 메모 */}
       <div className="memo">
-        <input
-          className={isSelected ? "input-focus" : "input-blur"}
+        <Input
+          isSelected={isSelected}
           value={memo}
-          placeholder={"결제" + id}
-          disabled={!isSelected}
-          autoComplete="off"
-          onChange={(e) => changeMemo(e.target.value, id)}
+          placeholder={"결제" + (id + 1)}
+          // disabled={!isSelected}
+          // autoComplete="off"
+          onChange={changeMemo}
+          id={id}
         />
       </div>
       {/* 결제한 금액 */}
       <div className="money">
-        <input
-          style={{ flex: "1", width: "0" }}
-          className={isSelected ? "input-focus" : "input-blur"}
+        <Input
+          isSelected={isSelected}
           type="number"
-          value={money}
+          value={money === 0 ? "" : money}
           placeholder="0"
-          onChange={(e) => changeMoney(e.target.value, id)}
+          onChange={changeMoney}
+          id={id}
+          textAlign="end"
         />
       </div>
+      <p className="count-users">/ {countUsers()}명</p>
       {/* 사용한 사람들 */}
       <MultiSelect
-        style={{ flex: 1 }}
         options={members}
         selectedOptions={users}
         onSelect={(mid) => selectUser(id, mid)}

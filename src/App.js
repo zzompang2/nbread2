@@ -3,8 +3,7 @@ import Navigation from "./routes/Navigation";
 import Home from "./routes/Home";
 import Calculation from "./routes/Calculation";
 import Inquiry from "./routes/Inquiry";
-import "./App.css";
-import "./styles.css";
+import "./styles.scss";
 
 function App() {
   return (

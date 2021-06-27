@@ -20,7 +20,6 @@ function Calculation(props) {
     { id: 0, memo: "결제1", payer: 0, money: 0, users: [true, true] },
     { id: 1, memo: "결제2", payer: 1, money: 0, users: [true, true] },
   ]);
-  const [selectedPid, setSelectedPid] = useState(-1); // UsersSelect 가 눌려있는 payment
   const [resultToggle, setResultToggle] = useState(false); // Result 창 토글
 
   /**
@@ -67,7 +66,10 @@ function Calculation(props) {
   function changeMoney(newMoney, pid) {
     console.log("changeMoney/수정된 금액 및 pid =", newMoney, pid);
     const newPayments = payments.slice();
-    newPayments[pid] = { ...newPayments[pid], money: newMoney };
+    newPayments[pid] = {
+      ...newPayments[pid],
+      money: newMoney == "" ? 0 : Number(newMoney),
+    };
     setPayments(newPayments);
   }
 
@@ -205,15 +207,6 @@ function Calculation(props) {
   }
 
   /**
-   * PID 결제 내역의 User Select 창을 띄운다.
-   * @param {number} pid 선택된 결제 내역의 ID
-   */
-  function popupUsersSelect(pid) {
-    console.log("popupUsersSelect/", pid);
-    setSelectedPid(selectedPid === pid ? -1 : pid);
-  }
-
-  /**
    * PID 결제 내역의 USERS 에 모든 멤버를 포함한다.
    * @param {number} pid 결제 내역의 ID
    */
@@ -337,29 +330,29 @@ function Calculation(props) {
             <div className="money">결제한 금액</div>
             <div className="users">사용한 사람들</div>
           </div>
-          {payments.map((payment) => (
-            <PaymentCard
-              key={payment.id}
-              id={payment.id}
-              payer={payment.payer}
-              memo={payment.memo}
-              money={payment.money}
-              users={payment.users}
-              members={members}
-              changeMemo={changeMemo}
-              changePayer={changePayer}
-              changeMoney={changeMoney}
-              popupUsersSelect={popupUsersSelect}
-              selectedPid={selectedPid}
-              selectUser={selectUser}
-              unselectUser={unselectUser}
-              selectUserAll={selectUserAll}
-              unselectUserAll={unselectUserAll}
-              deletePayment={deletePayment}
-              selectedPaymentCardId={selectedPaymentCardId}
-              selectPaymentCard={selectPaymentCard}
-            />
-          ))}
+          <div className="payment-list">
+            {payments.map((payment) => (
+              <PaymentCard
+                key={payment.id}
+                id={payment.id}
+                payer={payment.payer}
+                memo={payment.memo}
+                money={payment.money}
+                users={payment.users}
+                members={members}
+                changeMemo={changeMemo}
+                changePayer={changePayer}
+                changeMoney={changeMoney}
+                selectUser={selectUser}
+                unselectUser={unselectUser}
+                selectUserAll={selectUserAll}
+                unselectUserAll={unselectUserAll}
+                deletePayment={deletePayment}
+                selectedPaymentCardId={selectedPaymentCardId}
+                selectPaymentCard={selectPaymentCard}
+              />
+            ))}
+          </div>
         </div>
 
         {/* <div className="column3">
